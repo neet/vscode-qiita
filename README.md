@@ -1,1 +1,2 @@
 # md2qiita
+VSCodeのMarkdown編集画面からQiitaに直接記事を公開できる拡張機能です．
