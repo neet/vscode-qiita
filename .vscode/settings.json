@@ -1,4 +1,5 @@
 {
+  "workbench.activityBar.visible": true,
   "editor.insertSpaces": false,
   "editor.tabSize": 2,
   "files.encoding": "utf8",
@@ -6,8 +7,8 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "tslint.enable": true,
-  "tslint.packageManager": "yarn",
-  "npm.packageManager": "yarn",
+  "tslint.packageManager": "npm",
+  "npm.packageManager": "npm",
   "files.exclude": {
     "out": false
   },

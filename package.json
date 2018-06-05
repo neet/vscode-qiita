@@ -15,12 +15,15 @@
   ],
   "main": "./out/extension",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.sayHello",
-        "title": "Hello World"
-      }
-    ]
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "md2qiita",
+          "title": "MD2Qiita",
+          "icon": "resources/qiita.svg"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -30,13 +33,11 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.42",
-    "@types/node": "^7.0.43",
+    "@types/mocha": "^5.2.1",
+    "@types/node": "^10.3.1",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1",
-    "vscode": "^1.1.6"
-  },
-  "dependencies": {
+    "vscode": "^1.1.6",
     "qiita-js": "^0.4.3",
     "tslint-microsoft-contrib": "^5.0.3",
     "tslint-react": "^3.6.0"
