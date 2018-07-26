@@ -1,7 +1,7 @@
 {
   "name": "md2qiita",
   "displayName": "md2qiita",
-  "description": "Publish your article to Qiita via VSCode",
+  "description": "Publish your article to Qiita",
   "version": "0.0.1",
   "publisher": "Neetshin",
   "engines": {
@@ -15,6 +15,25 @@
   ],
   "main": "./out/extension",
   "contributes": {
+    "configuration": [
+      {
+        "title": "Publish your article to Qiita",
+        "properties": {
+          "md2qiita.token": {
+            "type": "string",
+            "description": "Access token for Qiita or your Qiita team"
+          }
+        }
+      }
+    ],
+    "views": {
+      "md2qiita": [
+        {
+          "id": "md2qiita",
+          "name": "MD2Qiita"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -33,13 +52,13 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.1",
-    "@types/node": "^10.3.1",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1",
-    "vscode": "^1.1.6",
-    "qiita-js": "^0.4.3",
-    "tslint-microsoft-contrib": "^5.0.3",
-    "tslint-react": "^3.6.0"
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.5.3",
+    "qiita-js-2": "0.0.1",
+    "tslint": "^5.11.0",
+    "tslint-microsoft-contrib": "^5.1.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.2",
+    "vscode": "^1.1.6"
   }
 }
