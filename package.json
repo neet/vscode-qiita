@@ -5,41 +5,65 @@
   "version": "0.0.1",
   "publisher": "Neetshin",
   "engines": {
-    "vscode": "^1.23.0"
+    "vscode": "^1.27.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "*"
   ],
   "main": "./out/extension",
   "contributes": {
+    "commands": [
+      {
+        "command": "qiita.publish",
+        "title": "現在編集しているMarkdownファイルをQiitaに公開します",
+        "category": "Qiita"
+      },
+      {
+        "command": "qiita.saveDraft",
+        "title": "現在編集しているMarkdownファイルをQiitaで下書き保存します",
+        "category": "Qiita"
+      },
+      {
+        "command": "qiita.open",
+        "title": "指定の投稿をMarkdownファイルとして開きます",
+        "category": "Qiita"
+      }
+    ],
     "configuration": [
       {
-        "title": "Publish your article to Qiita",
+        "title": "md2qiita configurations",
+        "type": "object",
         "properties": {
           "md2qiita.token": {
             "type": "string",
-            "description": "Access token for Qiita or your Qiita team"
+            "description": "Qiitaのアクセストークン"
           }
         }
       }
     ],
-    "views": {
-      "md2qiita": [
-        {
-          "id": "md2qiita",
-          "name": "MD2Qiita"
-        }
-      ]
-    },
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "md2qiita",
-          "title": "MD2Qiita",
+          "id": "qiita",
+          "title": "Qiita",
           "icon": "resources/qiita.svg"
+        }
+      ]
+    },
+    "views": {
+      "qiita": [
+        {
+          "id": "qiita-item",
+          "name": "Qiitaの投稿"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "qiita-edit",
+          "name": "Qiitaで編集"
         }
       ]
     }
@@ -52,13 +76,15 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.5.3",
-    "qiita-js-2": "0.0.1",
-    "tslint": "^5.11.0",
-    "tslint-microsoft-contrib": "^5.1.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^2.9.2",
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^7.0.43",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
     "vscode": "^1.1.6"
+  },
+  "dependencies": {
+    "@types/tmp": "0.0.33",
+    "qiita-js-2": "^0.0.1",
+    "tmp": "0.0.33"
   }
 }
