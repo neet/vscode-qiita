@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as vscode from 'vscode';
 import { client } from '../client';
 import { cacheManager } from '../cacheManager';
@@ -9,16 +8,18 @@ import {
 
 export class QiitaItemProvider implements vscode.TreeDataProvider<QiitaItem> {
 
+  private itemsGenerator = client.fetchMyItems('1', '60');
+
   public getTreeItem (element: QiitaItem): vscode.TreeItem {
     return element;
   }
 
-  public async getChildren (element?: QiitaItem): Promise<QiitaItem[]> {
+  public async getChildren (/* element?: QiitaItem */): Promise<QiitaItem[]> {
     // if (element) {
     //   return array of item
     // }
 
-    const items = await client.fetchMyItems('1', '60');
+    const { value: items } = await this.itemsGenerator.next();
 
     return items.map((item) => {
       const path = cacheManager.saveItem(item);
