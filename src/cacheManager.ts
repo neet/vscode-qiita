@@ -4,11 +4,11 @@ import Qiita from 'qiita-js-2';
 
 class CacheManager {
   /**
-   * Generate absolute filepath from given item id
-   * @param id Id of qitia item
-   * @return Absolute file path
+   * 与えられたidをキャッシュファイルへの絶対パスに変換します
+   * @param id Qiitaの投稿のID
+   * @return 絶対パス
    */
-  public makeFileUri (id: Qiita.Item['id']) {
+  private makeFileUri (id: Qiita.Item['id']) {
     if (!workspace.rootPath) {
       throw Error('Workspace not found')
     }
@@ -19,26 +19,26 @@ class CacheManager {
   }
 
   /**
-   * Save fetched qiita item to VSCode's local directory
-   * @param item Object of Qiita item
-   * @return Absolute path of saved file
+   * Qiitaの投稿をローカルに保存します
+   * @param item Qiitaの投稿のオブジェクト
+   * @return 保存したファイルへの絶対パスを返すPromise
    */
-  public saveItem (item: Qiita.Item) {
+  public async saveItem (item: Qiita.Item) {
     const fileUri = this.makeFileUri(item.id);
     const wsEdit  = new WorkspaceEdit();
     const insertPosition = new Position(0, 0);
 
     wsEdit.createFile(fileUri);
     wsEdit.insert(fileUri, insertPosition, item.body);
-    workspace.applyEdit(wsEdit);
+    await workspace.applyEdit(wsEdit);
 
     return fileUri;
   }
 
   /**
-   * Get saved qiita item from VSCode's local directory
-   * @param id ID of qiita item
-   * @return Body of the file
+   * ローカルに保存したQiitaの投稿を取得します
+   * @param id Qiitaの投稿のID
+   * @return ファイルの内容
    */
   public getItem (id: Qiita.Item['id']) {
     return this.makeFileUri(id);

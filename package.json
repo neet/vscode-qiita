@@ -1,6 +1,6 @@
 {
-  "name": "md2qiita",
-  "displayName": "md2qiita",
+  "name": "vscode-qiita",
+  "displayName": "Qiita",
   "description": "Publish your article to Qiita",
   "version": "0.0.1",
   "publisher": "Neetshin",
@@ -17,27 +17,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "qiita.publish",
+        "command": "qiita.createItem",
         "title": "現在編集しているMarkdownファイルをQiitaに公開します",
         "category": "Qiita"
       },
       {
-        "command": "qiita.saveDraft",
-        "title": "現在編集しているMarkdownファイルをQiitaで下書き保存します",
-        "category": "Qiita"
-      },
-      {
-        "command": "qiita.open",
+        "command": "qiita.openItem",
         "title": "指定の投稿をMarkdownファイルとして開きます",
         "category": "Qiita"
       }
     ],
     "configuration": [
       {
-        "title": "md2qiita configurations",
+        "title": "Qiitaの設定",
         "type": "object",
         "properties": {
-          "md2qiita.token": {
+          "qiita.token": {
             "type": "string",
             "description": "Qiitaのアクセストークン"
           }
@@ -56,14 +51,8 @@
     "views": {
       "qiita": [
         {
-          "id": "qiita-item",
+          "id": "qiitaItems",
           "name": "Qiitaの投稿"
-        }
-      ],
-      "explorer": [
-        {
-          "id": "qiita-edit",
-          "name": "Qiitaで編集"
         }
       ]
     }

@@ -2,6 +2,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { client } from '../client';
 import { cacheManager } from '../cacheManager';
+import {
+  COMMAND_OPEN_ITEM,
+  VIEW_QIITA_ITEMS,
+} from '../constants';
 
 export class QiitaItemProvider implements vscode.TreeDataProvider<QiitaItem> {
 
@@ -20,7 +24,7 @@ export class QiitaItemProvider implements vscode.TreeDataProvider<QiitaItem> {
       const path = cacheManager.saveItem(item);
 
       const command = {
-        command:   'md2qiita.open',
+        command:   COMMAND_OPEN_ITEM,
         title:     '',
         arguments: [ path ],
       }
@@ -39,14 +43,5 @@ export class QiitaItem extends vscode.TreeItem {
     super(label, collapsibleState);
   }
 
-  get tooltip (): string {
-    return this.label;
-  }
-
-  public iconPath = {
-    light: path.join(__filename, '..', '..', '..', 'resources', 'qitia.svg'),
-    dark: path.join(__filename, '..', '..', '..', 'resources', 'qitia.svg'),
-  };
-
-  public contextValue = 'qiita-item';
+  public contextValue = VIEW_QIITA_ITEMS;
 }

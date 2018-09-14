@@ -1,9 +1,9 @@
 import { workspace } from 'vscode';
 
 /**
- * Open specified file in current workspace
- * @param path Path to the file
- * @return Promise resolve to the document
+ * 現在のワークスペース内の特定のファイルを開きます
+ * @param path ファイルへのパス
+ * @return ドキュメントを返すPromise
  */
 export function open (path: string) {
   console.log(`called ${path}`);
