@@ -7,8 +7,8 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "tslint.enable": true,
-  "tslint.packageManager": "npm",
-  "npm.packageManager": "npm",
+  "tslint.packageManager": "yarn",
+  "npm.packageManager": "yarn",
   "files.exclude": {
     "out": false
   },
