@@ -1,6 +1,6 @@
 import { workspace, WorkspaceEdit, Uri, Position } from 'vscode';
 import * as path from 'path';
-import Qiita from 'qiita-js-2';
+import { Item } from 'qiita-js-2';
 
 class CacheManager {
   /**
@@ -8,7 +8,7 @@ class CacheManager {
    * @param id Qiitaの投稿のID
    * @return 絶対パス
    */
-  private makeFileUri (id: Qiita.Item['id']) {
+  private makeFileUri (id: Item['id']) {
     if (!workspace.rootPath) {
       throw Error('Workspace not found')
     }
@@ -23,7 +23,7 @@ class CacheManager {
    * @param item Qiitaの投稿のオブジェクト
    * @return 保存したファイルへの絶対パスを返すPromise
    */
-  public async saveItem (item: Qiita.Item) {
+  public async saveItem (item: Item) {
     const fileUri = this.makeFileUri(item.id);
     const wsEdit  = new WorkspaceEdit();
     const insertPosition = new Position(0, 0);
@@ -40,7 +40,7 @@ class CacheManager {
    * @param id Qiitaの投稿のID
    * @return ファイルの内容
    */
-  public getItem (id: Qiita.Item['id']) {
+  public getItem (id: Item['id']) {
     return this.makeFileUri(id);
   }
 }
