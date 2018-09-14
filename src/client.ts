@@ -1,6 +1,6 @@
 import { Qiita } from 'qiita-js-2';
-import { workspace } from 'vscode';
+import { configuration } from './configuration';
 
-const { token } = workspace.getConfiguration('qiita');
-
-export const client = new Qiita({ token });
+export const client = new Qiita({
+  token: configuration.token || '',
+});
