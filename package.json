@@ -29,12 +29,22 @@
     ],
     "configuration": [
       {
-        "title": "Qiitaの設定",
+        "title": "Qiita",
         "type": "object",
         "properties": {
           "qiita.token": {
             "type": "string",
             "description": "Qiitaのアクセストークン"
+          },
+          "qiita.tweetOnCreateItem": {
+            "type": "boolean",
+            "default": false,
+            "description": "投稿を公開した際にTwitterで共有するかどうか"
+          },
+          "qiita.gistOnCreateItem": {
+            "type": "boolean",
+            "default": false,
+            "description": "投稿を公開した際にGitHub Gistで共有するかどうか"
           }
         }
       }
