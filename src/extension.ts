@@ -9,6 +9,7 @@ import {
   VIEW_QIITA_ITEMS,
   COMMAND_OPEN_ITEM,
 } from './constants';
+import './polyfills';
 
 export function activate (context: ExtensionContext) {
   const qiitaItemProvider = new QiitaItemProvider();
