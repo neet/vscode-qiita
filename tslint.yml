@@ -1,10 +1,6 @@
 ---
 defaultSeverity: warning
 
-rulesDirectory:
-- tslint-microsoft-contrib
-- tslint-react/rules
-
 extends:
 - tslint:recommended
 
