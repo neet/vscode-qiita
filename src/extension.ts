@@ -1,17 +1,17 @@
 import {
-  window,
   commands,
-  ExtensionContext,
+  window,
+  // ExtensionContext,
 } from 'vscode';
-import { QiitaItemProvider } from './treeItems/items';
 import { open } from './commands/open';
 import {
-  VIEW_QIITA_ITEMS,
   COMMAND_OPEN_ITEM,
+  VIEW_QIITA_ITEMS,
 } from './constants';
 import './polyfills';
+import { QiitaItemProvider } from './views/qiitaItems';
 
-export function activate (context: ExtensionContext) {
+export function activate (/*context: ExtensionContext */) {
   const qiitaItemProvider = new QiitaItemProvider();
 
   window.registerTreeDataProvider(VIEW_QIITA_ITEMS, qiitaItemProvider);
@@ -19,5 +19,5 @@ export function activate (context: ExtensionContext) {
   commands.registerCommand(COMMAND_OPEN_ITEM, (path) => open(path));
 }
 
-export function deactivate() {
+export function deactivate () {
 }

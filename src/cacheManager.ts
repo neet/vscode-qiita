@@ -1,6 +1,6 @@
-import { workspace, WorkspaceEdit, Uri, Position } from 'vscode';
 import * as path from 'path';
 import { Item } from 'qiita-js-2';
+import { Position, Uri, workspace, WorkspaceEdit } from 'vscode';
 
 class CacheManager {
   /**
@@ -10,7 +10,7 @@ class CacheManager {
    */
   private makeFileUri (id: Item['id']) {
     if (!workspace.rootPath) {
-      throw Error('Workspace not found')
+      throw Error('Workspace not found');
     }
 
     const extension = 'md';
