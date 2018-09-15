@@ -25,6 +25,10 @@
         "command": "qiita.openItem",
         "title": "指定の投稿をMarkdownファイルとして開きます",
         "category": "Qiita"
+      },
+      {
+        "command": "qiita.addTagToItem",
+        "title": ""
       }
     ],
     "configuration": [
@@ -49,6 +53,18 @@
         }
       }
     ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "qiita.createItem",
+          "when": "viewItem == qiitaItems"
+        },
+        {
+          "command": "qiita.openItem",
+          "when": "viewItem == qiitaItems"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -83,7 +99,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
+    "@types/fuse": "^2.6.0",
     "core-js": "^2.5.7",
+    "fuse": "^0.4.0",
     "qiita-js-2": "^1.1.0"
   }
 }
