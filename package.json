@@ -16,20 +16,11 @@
   "main": "./out/extension",
   "contributes": {
     "commands": [
-      {
-        "command": "qiita.createItem",
-        "title": "現在編集しているMarkdownファイルをQiitaに公開します",
-        "category": "Qiita"
-      },
-      {
-        "command": "qiita.openItem",
-        "title": "指定の投稿をMarkdownファイルとして開きます",
-        "category": "Qiita"
-      },
-      {
-        "command": "qiita.addTagToItem",
-        "title": ""
-      }
+      { "command": "qiita.compose",          "title": "Qiitaで公開", "category": "Qiita" },
+      { "command": "qiita.openItem",         "title": "開く", "category": "Qiita" },
+      { "command": "qiita.deleteItem",       "title": "削除", "category": "Qiita" },
+      { "command": "qiita.editTags",         "title": "タグを編集", "category": "Qiita" },
+      { "command": "qiita.openItemExternal", "title": "ブラウザで表示", "category": "Qiita" }
     ],
     "configuration": [
       {
@@ -54,32 +45,33 @@
       }
     ],
     "menus": {
+      "editor/title": [
+        { "command": "qiita.compose", "when": "resourceLangId == markdown", "group": "3_open" }
+      ],
+      "editor/context": [
+        { "command": "qiita.compose", "when": "resourceLangId == markdown", "group": "z_commands" }
+      ],
+      "editor/title/context": [
+        { "command": "qiita.compose", "when": "resourceLangId == markdown", "group": "1_modification" }
+      ],
+      "explorer/context": [
+        { "command": "qiita.compose", "when": "resourceLangId == markdown", "group": "7_modification" }
+      ],
       "view/item/context": [
-        {
-          "command": "qiita.createItem",
-          "when": "viewItem == qiitaItems"
-        },
-        {
-          "command": "qiita.openItem",
-          "when": "viewItem == qiitaItems"
-        }
+        { "command": "qiita.openItemExternal", "when": "viewItem == qiitaItems", "group": "navigation" },
+        { "command": "qiita.openItem",         "when": "viewItem == qiitaItems", "group": "1_modification" },
+        { "command": "qiita.editTags",         "when": "viewItem == qiitaItems", "group": "1_modification" },
+        { "command": "qiita.deleteItem",       "when": "viewItem == qiitaItems", "group": "9_deletion" }
       ]
     },
     "viewsContainers": {
       "activitybar": [
-        {
-          "id": "qiita",
-          "title": "Qiita",
-          "icon": "resources/qiita.svg"
-        }
+        { "id": "qiita", "title": "Qiita", "icon": "resources/qiita.svg" }
       ]
     },
     "views": {
       "qiita": [
-        {
-          "id": "qiitaItems",
-          "name": "Qiitaの投稿"
-        }
+        { "id": "qiitaItems", "name": "Qiitaの投稿" }
       ]
     }
   },
