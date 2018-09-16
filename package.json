@@ -88,7 +88,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    "test": "npm run compile && node ./node_modules/vscode/bin/test",
+    "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
@@ -100,6 +101,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
     "core-js": "^2.5.7",
+    "fuse.js": "^3.2.1",
     "qiita-js-2": "^1.1.0"
   }
 }
