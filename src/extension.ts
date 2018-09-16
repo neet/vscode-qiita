@@ -3,6 +3,7 @@ import {
   window,
   // ExtensionContext,
 } from 'vscode';
+import { compose } from './commands/compose';
 import { deleteItem } from './commands/deleteItem';
 import { openItemExternal } from './commands/openItemExternal';
 import {
@@ -22,6 +23,8 @@ export function activate (/*context: ExtensionContext */) {
   commands.registerCommand('qiita.openItem', () => undefined);
   commands.registerCommand('qiita.fetchItem', items.refreshItems, items);
   commands.registerCommand('qiita.searchTags', tags.searchTag, tags);
+
+  commands.registerCommand('qiita.compose', compose);
 
   commands.registerCommand('qiita.openItemExternal', openItemExternal);
   commands.registerCommand('qiita.deleteItem', deleteItem);

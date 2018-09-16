@@ -5,7 +5,7 @@ import { client } from '../client';
 export class Items  {
 
   /** アイテムのストア */
-  public items: { [K: string]: Item } = {};
+  public items = new Map<string, Item>();
 
   /** アイテムを取得するイテレーター */
   private itemsIterator = client.fetchMyItems('1', '60');
@@ -20,7 +20,7 @@ export class Items  {
    */
   protected normalizeItems (items: Item[]) {
     for (const item of items) {
-      this.items[item.id] = item;
+      this.items.set(item.id, item);
     }
   }
 
