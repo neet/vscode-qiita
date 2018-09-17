@@ -10,9 +10,9 @@
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.5.tgz#8a4accfc403c124a0bafe8a9fc61a05ec1032073"
 
-"@types/node@^10.9.4":
-  version "10.9.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
+"@types/node@^10.10.0":
+  version "10.10.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.10.0.tgz#2b08a1a7d1fa317173a776c2130bf240545cc33e"
 
 ajv@^5.3.0:
   version "5.5.2"
@@ -1045,9 +1045,9 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-qiita-js-2@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.2.0.tgz#9bbebc85bb448fbf8536482caf07aac79bce9b11"
+qiita-js-2@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.2.4.tgz#4f3d0011995b0c67e072b3ba883cbd42c00e3547"
   dependencies:
     node-fetch "^2.2.0"
 
