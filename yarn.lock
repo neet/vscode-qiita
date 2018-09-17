@@ -1045,9 +1045,9 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-qiita-js-2@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.1.0.tgz#6aa1cae4cd752aabec1efe4e83151b2e3c10b233"
+qiita-js-2@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.2.0.tgz#9bbebc85bb448fbf8536482caf07aac79bce9b11"
   dependencies:
     node-fetch "^2.2.0"
 
