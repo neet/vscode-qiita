@@ -7,20 +7,28 @@ import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
 import { visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
 import { createMultiStepInput } from '../utils/createMultiStepInput';
 
-const getFilenameFromPath = (filename: string) => {
-  const splitPath = filename.split('/');
-  [filename] = splitPath[splitPath.length - 1].split('.');
-
-  return filename;
+/**
+ * パスからファイル名を取得
+ * @param path 相対/絶対パス
+ * @return ファイル名
+ */
+const getFilenameFromPath = (path: string) => {
+  const splitPath = path.split('/');
+  return splitPath[splitPath.length - 1].split('.')[0];
 };
 
-export function compose (arg: object & { path: string }) {
+/**
+ * 投稿を公開するためのQuickPickとInputBoxを表示
+ * @param arg コマンドから渡される引数
+ */
+export function compose (arg: object & { path: string }): void {
   const fileName = getFilenameFromPath(arg.path);
 
   const titleInputBox       = titleInputBoxCreator(fileName);
-  const tagsQuickPick       = tagQuickPickCreator([]);
+  const tagsQuickPick       = tagQuickPickCreator();
   const visibilityQuickPick = visibilityQuickPickCreator();
 
+  // Qiita.createItemのオプション
   const options: CreateItemOptions = {
     title: '',
     tags: [],
@@ -30,14 +38,17 @@ export function compose (arg: object & { path: string }) {
     gist: configuration.gistOnCreateItem,
   };
 
+  // ドキュメントから本文を取得してbodyに代入
   workspace.openTextDocument(arg.path).then((document) => {
     options.body = document.getText();
   });
 
+  // titleInputBoxからタイトルを代入
   titleInputBox.onDidAccept(() => {
     options.title = titleInputBox.value;
   });
 
+  // tagQuickPickからタグを代入
   tagsQuickPick.onDidAccept(() => {
     options.tags = tagsQuickPick.selectedItems.map((item) => ({
       name: item.label,
@@ -45,6 +56,7 @@ export function compose (arg: object & { path: string }) {
     }));
   });
 
+  // visibilityQuickPick終了時に公開状態を代入してQiita.createItemを呼び出し
   visibilityQuickPick.onDidAccept(async () => {
     options.private = visibilityQuickPick.selectedItems[0].label === '限定公開';
     const openInBrowswer = 'ブラウザで確認';
@@ -62,11 +74,9 @@ export function compose (arg: object & { path: string }) {
     }
   });
 
-  const multiStepInput = createMultiStepInput([
+  createMultiStepInput([
     titleInputBox,
     tagsQuickPick,
     visibilityQuickPick,
-  ]);
-
-  multiStepInput();
+  ])();
 }
