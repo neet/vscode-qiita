@@ -39,12 +39,12 @@ async function suggestTags (value: string) {
  * @param selectedItems 選択済みのタグ
  * @return QuickPicker
  */
-export function tagQuickPickCreator (selectedItems: QuickPickItem[]) {
+export function tagQuickPickCreator (selectedItems?: QuickPickItem[]) {
   const quickPick = window.createQuickPick();
 
   quickPick.canSelectMany = true;
-  quickPick.items         = selectedItems;
-  quickPick.selectedItems = selectedItems;
+  quickPick.items         = selectedItems || [];
+  quickPick.selectedItems = selectedItems || [];
   quickPick.title         = '投稿に登録するタグを入力してください';
   quickPick.placeholder   = '例) Rails React Mastodon';
 
