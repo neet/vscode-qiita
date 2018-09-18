@@ -12,7 +12,7 @@ export async function deleteItem (arg: object & { item: Item }) {
 
   const result = await window.showInformationMessage('投稿を削除してもよろしいですか?', _continue, cancel);
 
-  if (result === cancel) {
+  if (result !== _continue) {
     return;
   }
 
