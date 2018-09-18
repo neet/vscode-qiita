@@ -49,11 +49,11 @@ export function tagQuickPickCreator (selectedItems: QuickPickItem[]) {
   quickPick.placeholder   = '例) Rails React Mastodon';
 
   quickPick.onDidChangeValue(async (value: string) => {
-    quickPick.busy = true;
+    quickPick.busy       = true;
     const suggestedItems = await suggestTags(value);
-    quickPick.busy = false;
+    quickPick.busy       = false;
 
-    quickPick.items = [...suggestedItems, ...quickPick.selectedItems];
+    quickPick.items         = quickPick.selectedItems.concat(suggestedItems);
     quickPick.selectedItems = quickPick.selectedItems;
   });
 
