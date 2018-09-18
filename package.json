@@ -152,19 +152,17 @@
     "test": "yarn run compile && node ./node_modules/vscode/bin/test",
     "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
   },
-  "devDependencies": {
+  "dependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.10.1",
+    "core-js": "^2.5.7",
+    "fuse.js": "^3.2.1",
     "jest": "^23.6.0",
+    "qiita-js-2": "^1.2.5",
     "ts-jest": "^23.1.4",
     "tslint": "^5.8.0",
     "typescript": "^3.0.3",
-    "vscode": "^1.1.6"
-  },
-  "dependencies": {
-    "core-js": "^2.5.7",
-    "fuse.js": "^3.2.1",
-    "qiita-js-2": "^1.2.5",
+    "vscode": "^1.1.6",
     "vscode-nls": "^4.0.0",
     "vscode-nls-dev": "^3.2.2"
   }
