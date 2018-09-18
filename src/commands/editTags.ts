@@ -4,7 +4,7 @@ import { window } from 'vscode';
 import { client } from '../client';
 import { makeQuickPickItemFromTag, tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 
-const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPickItem>) => {
+export const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPickItem>) => {
   const taggings = selectedItems.map((item) => ({
     name: item.label,
     versions: [],
