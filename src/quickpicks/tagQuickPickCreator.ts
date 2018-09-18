@@ -40,22 +40,22 @@ async function suggestTags (value: string) {
  * @return QuickPicker
  */
 export function tagQuickPickCreator (selectedItems: QuickPickItem[]) {
-  const input = window.createQuickPick();
+  const quickPick = window.createQuickPick();
 
-  input.canSelectMany = true;
-  input.items         = selectedItems;
-  input.selectedItems = selectedItems;
-  input.title         = '投稿に登録するタグを入力してください';
-  input.placeholder   = '例) Rails React Mastodon';
+  quickPick.canSelectMany = true;
+  quickPick.items         = selectedItems;
+  quickPick.selectedItems = selectedItems;
+  quickPick.title         = '投稿に登録するタグを入力してください';
+  quickPick.placeholder   = '例) Rails React Mastodon';
 
-  input.onDidChangeValue(async (value: string) => {
-    input.busy = true;
+  quickPick.onDidChangeValue(async (value: string) => {
+    quickPick.busy = true;
     const suggestedItems = await suggestTags(value);
-    input.busy = false;
+    quickPick.busy = false;
 
-    input.items = [...suggestedItems, ...input.selectedItems];
-    input.selectedItems = input.selectedItems;
+    quickPick.items = [...suggestedItems, ...quickPick.selectedItems];
+    quickPick.selectedItems = quickPick.selectedItems;
   });
 
-  return input;
+  return quickPick;
 }
