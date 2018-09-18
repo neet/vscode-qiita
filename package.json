@@ -153,14 +153,12 @@
     "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
     "@types/node": "^10.10.1",
     "tslint": "^5.8.0",
     "typescript": "^3.0.3",
     "vscode": "^1.1.6"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.3.1",
     "core-js": "^2.5.7",
     "fuse.js": "^3.2.1",
     "qiita-js-2": "^1.2.5",
