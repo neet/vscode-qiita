@@ -1,0 +1,27 @@
+{
+  "commads.qiita.compose.title": "Qiitaで公開",
+  "commads.qiita.openItem.title": "開く",
+
+  "commads.qiita.deleteItem.title": "削除",
+  "commads.qiita.deleteItem.confirm": "投稿を削除してもよろしいですか？",
+  "commads.qiita.deleteItem.confirm.next": "削除する",
+  "commads.qiita.deleteItem.confirm.cancel": "キャンセル",
+  "commads.qiita.deleteItem.success": "投稿を削除しました",
+
+  "failure.unauthorized": "リクエストに失敗しました。Qiitaアカウントを認証しているかお確かめの上もう一度お試しください",
+  "failure.forbitten": "リクエストに失敗しました。正しいアカウントにログインしているかをお確かめの上もう一度お試しください",
+  "failure.notFound": "リクエストに失敗しました。指定されたページは存在しないか削除された可能性があります。",
+  "failure.rateLimit": "APIのレートリミットに到達しました。時間をおいてもう一度お試しください。",
+  "failure.InternalServerError": "削除に失敗しました。Qiitaのサーバーがダウンしている可能性があります。",
+  "failure.fallback": "ご迷惑をお掛けしてしまい申し訳ございませんが、エラーが発生しました。 バグの可能性がある場合は開発者にご報告いただけると幸いです。\nhttps://github.com/neet/vscode-qiita/issues",
+
+  "commads.qiita.editTags.title": "タグを編集",
+  "commads.qiita.openItemExternal.title": "ブラウザで表示",
+  "commads.qiita.makePublic.title": "投稿を公開にする",
+
+  "configuration.qiita.token.description": "Qiitaのアクセストークン",
+  "configuration.qiita.tweetOnCreateItem.description": "投稿を公開した際にTwitterで共有するかどうか",
+  "configuration.qiita.gistOnCreateItem.description": "投稿を公開した際にGitHub Gistで共有するかどうか",
+
+  "views.qiita.qiitaItem": "Qiitaの投稿"
+}

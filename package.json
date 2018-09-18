@@ -18,32 +18,32 @@
     "commands": [
       {
         "command": "qiita.compose",
-        "title": "Qiitaで公開",
+        "title": "%commads.qiita.compose.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItem",
-        "title": "開く",
+        "title": "%commads.qiita.openItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.deleteItem",
-        "title": "削除",
+        "title": "%commads.qiita.deleteItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.editTags",
-        "title": "タグを編集",
+        "title": "%commads.qiita.editTags.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItemExternal",
-        "title": "ブラウザで表示",
+        "title": "%commads.qiita.openItemExternal.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.makePublic",
-        "title": "投稿を公開にする",
+        "title": "%commads.qiita.makePublic.title%",
         "category": "Qiita"
       }
     ],
@@ -54,17 +54,17 @@
         "properties": {
           "qiita.token": {
             "type": "string",
-            "description": "Qiitaのアクセストークン"
+            "description": "%configuration.qiita.token.description%"
           },
           "qiita.tweetOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "投稿を公開した際にTwitterで共有するかどうか"
+            "description": "%configuration.qiita.tweetOnCreateItem.description%"
           },
           "qiita.gistOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "投稿を公開した際にGitHub Gistで共有するかどうか"
+            "description": "%configuration.qiita.gistOnCreateItem.description%"
           }
         }
       }
@@ -139,7 +139,7 @@
       "qiita": [
         {
           "id": "qiitaItems",
-          "name": "Qiitaの投稿"
+          "name": "%views.qiita.qiitaItem%"
         }
       ]
     }
@@ -163,6 +163,8 @@
     "@fortawesome/fontawesome-free": "^5.3.1",
     "core-js": "^2.5.7",
     "fuse.js": "^3.2.1",
-    "qiita-js-2": "^1.2.4"
+    "qiita-js-2": "^1.2.4",
+    "vscode-nls": "^4.0.0",
+    "vscode-nls-dev": "^3.2.2"
   }
 }
