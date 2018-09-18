@@ -1,6 +1,5 @@
 import { Item } from 'qiita-js-2';
-import { QuickPickItem } from 'vscode';
-import { window } from 'vscode';
+import { QuickPickItem, window } from 'vscode';
 import { client } from '../client';
 import { makeQuickPickItemFromTag, tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 
