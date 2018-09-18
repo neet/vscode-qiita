@@ -40,6 +40,11 @@
         "command": "qiita.openItemExternal",
         "title": "ブラウザで表示",
         "category": "Qiita"
+      },
+      {
+        "command": "qiita.makePublic",
+        "title": "投稿を公開にする",
+        "category": "Qiita"
       }
     ],
     "configuration": [
@@ -106,6 +111,11 @@
         },
         {
           "command": "qiita.editTags",
+          "when": "viewItem == qiitaItems",
+          "group": "1_modification"
+        },
+        {
+          "command": "qiita.makePublic",
           "when": "viewItem == qiitaItems",
           "group": "1_modification"
         },

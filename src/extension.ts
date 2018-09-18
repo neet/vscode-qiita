@@ -6,6 +6,7 @@ import {
 import { compose } from './commands/compose';
 import { deleteItem } from './commands/deleteItem';
 import { editTags } from './commands/editTags';
+import { makePublic } from './commands/makePublic';
 import { openItemExternal } from './commands/openItemExternal';
 import {
   // COMMAND_OPEN_ITEM,
@@ -26,6 +27,7 @@ export function activate (/*context: ExtensionContext */) {
   commands.registerCommand('qiita.searchTags', tags.searchTag, tags);
 
   commands.registerCommand('qiita.editTags', editTags);
+  commands.registerCommand('qiita.makePublic', makePublic);
 
   commands.registerCommand('qiita.compose', compose);
 
