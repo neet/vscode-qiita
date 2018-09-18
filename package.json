@@ -153,7 +153,10 @@
     "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.2",
     "@types/node": "^10.10.1",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.1.4",
     "tslint": "^5.8.0",
     "typescript": "^3.0.3",
     "vscode": "^1.1.6"
