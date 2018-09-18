@@ -1,5 +1,10 @@
 import { window } from 'vscode';
 
+/**
+ * タイトルを指定させるInputBoxを作成
+ * @param defaultValue 初期のタイトル
+ * @return InputBox
+ */
 export function titleInputBoxCreator (defaultValue?: string) {
   const inputBox = window.createInputBox();
 
