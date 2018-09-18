@@ -1,27 +1,23 @@
-import { InputBox, QuickPick } from 'vscode';
-import { Middleware, Next } from './middleware';
+import { InputBox, QuickPick, QuickPickItem } from 'vscode';
 
-export function createMultiStepInput <T> (inputs: (InputBox | QuickPick<any>)[]) {
-  const composeStep = new Middleware<T>();
+/**
+ * 複数のステップから成るQuickPick/InputBoxを生成します
+ * @param steps QuickPickかInputBoxの配列
+ * @return 0つめのステップのshow関数を呼び出す関数
+ */
+export function createMultiStepInput <T extends QuickPickItem> (steps: (InputBox | QuickPick<T>)[]) {
+  const totalSteps = steps.length;
 
-  const steps = inputs
-    // ステップ数を追加
-    .map((input, i) => {
-      input.totalSteps = inputs.length;
-      input.step       = i + 1;
-      return input;
-    })
-    // Middlewareとしてラップ
-    .map((input) => {
-      return (_: T, next: Next) => {
-        input.show();
-        input.onDidAccept(() => next());
-      };
+  steps.forEach((step, i) => {
+    step.totalSteps = totalSteps;
+    step.step       = i + 1;
+
+    // Acceptされたときに次のstepをshowする
+    step.onDidAccept(() => {
+      steps[i + 1].show();
     });
-
-  steps.forEach((step) => {
-    composeStep.use(step);
   });
 
-  return composeStep;
+  // 0つめをshowする関数を返し、帰納的にすべて呼び出す
+  return () => steps[0].show();
 }

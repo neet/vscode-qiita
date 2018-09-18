@@ -59,11 +59,11 @@ export function compose (arg: object & { path: string }) {
     }
   });
 
-  const steps = createMultiStepInput([
+  const multiStepInput = createMultiStepInput([
     titleInputBox,
     tagsQuickPick,
     visibilityQuickPick,
   ]);
 
-  steps.handle({});
+  multiStepInput();
 }
