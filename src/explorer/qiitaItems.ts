@@ -1,11 +1,8 @@
 import * as path from 'path';
 import { Item } from 'qiita-js-2';
 import { Command, TreeDataProvider, TreeItem, TreeItemCollapsibleState, Uri } from 'vscode';
-import { cacheManager } from '../cacheManager';
 import { client } from '../client';
 import { COMMAND_OPEN_ITEM } from '../constants';
-// import { itemList } from '../stores/itemList';
-// import { items } from '../stores/items';
 
 export class QiitaItemProvider implements TreeDataProvider<QiitaItem> {
 
@@ -27,11 +24,9 @@ export class QiitaItemProvider implements TreeDataProvider<QiitaItem> {
     //   return array of item
     // }
 
-    const { value: items } = await client.fetchMyItems('1', '60').next();
+    const { value: items } = await client.fetchMyItems({page: 1, per_page: 60}).next();
 
     return items.map((item) => {
-      const path = cacheManager.saveItem(item);
-
       const command = {
         command:   COMMAND_OPEN_ITEM,
         title:     '',

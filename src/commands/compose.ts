@@ -1,9 +1,9 @@
 import { commands, Uri, window, workspace } from 'vscode';
 import { CreateItemOptions } from '../../../qiita-js-2';
 import { client } from '../client';
-import { tagsPicker } from '../quicks/tagPicker';
-import { title } from '../quicks/title';
-import { visibilityPicker } from '../quicks/visibilityPicker';
+import { tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
+import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
+import { visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
 import { createMultiStepInput } from '../utils/createMultiStepInput';
 
 const getFilenameFromPath = (filename: string) => {
@@ -16,9 +16,9 @@ const getFilenameFromPath = (filename: string) => {
 export function compose (arg: object & { path: string }) {
   const fileName = getFilenameFromPath(arg.path);
 
-  const titleProcess            = title(fileName);
-  const tagsPickerProcess       = tagsPicker([]);
-  const visibilityPickerProcess = visibilityPicker();
+  const titleInputBox       = titleInputBoxCreator(fileName);
+  const tagsQuickPick       = tagQuickPickCreator([]);
+  const visibilityQuickPick = visibilityQuickPickCreator();
 
   const options: CreateItemOptions = {
     title: '',
@@ -31,19 +31,23 @@ export function compose (arg: object & { path: string }) {
     options.body = document.getText();
   });
 
-  titleProcess.onDidAccept(() => options.title = titleProcess.value);
+  titleInputBox.onDidAccept(() => {
+    options.title = titleInputBox.value;
+  });
 
-  tagsPickerProcess.onDidAccept(() => options.tags = tagsPickerProcess.selectedItems.map((item) => ({
-    name: item.label,
-    versions: [],
-  })));
+  tagsQuickPick.onDidAccept(() => {
+    options.tags = tagsQuickPick.selectedItems.map((item) => ({
+      name: item.label,
+      versions: [],
+    }));
+  });
 
-  visibilityPickerProcess.onDidAccept(async () => {
-    options.private = visibilityPickerProcess.selectedItems[0].label === '限定公開';
-    const openInBrowswer = 'ブラウザでの確認';
+  visibilityQuickPick.onDidAccept(async () => {
+    options.private = visibilityQuickPick.selectedItems[0].label === '限定公開';
+    const openInBrowswer = 'ブラウザで確認';
 
     try {
-      visibilityPickerProcess.hide();
+      visibilityQuickPick.hide();
       const item = await client.createItem(options);
       const result = await window.showInformationMessage('投稿を公開しました', openInBrowswer);
 
@@ -56,9 +60,9 @@ export function compose (arg: object & { path: string }) {
   });
 
   const steps = createMultiStepInput([
-    titleProcess,
-    tagsPickerProcess,
-    visibilityPickerProcess,
+    titleInputBox,
+    tagsQuickPick,
+    visibilityQuickPick,
   ]);
 
   steps.handle({});

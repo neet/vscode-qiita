@@ -1,24 +1,31 @@
 import { Item } from 'qiita-js-2';
 import { window } from 'vscode';
+import * as nls from 'vscode-nls';
 import { client } from '../client';
+
+const localize = nls.loadMessageBundle();
+
+const messages = {
+  next: localize('commads.qiita.deleteItem.confirm.continue', '削除する'),
+  cancel: localize('commads.qiita.deleteItem.confirm.cancel',   'キャンセル'),
+  confirmation: localize('commads.qiita.deleteItem.confirm', '投稿を削除してもよろしいですか？'),
+  success: localize('commads.qiita.deleteItem.success', '投稿を削除しました'),
+};
 
 /**
  * コマンド `qiita.deleteItem` のハンドラーで、Qiitaの投稿を削除します。
  * @param arg Commandで渡される引数。qiitaItemsビューから発行されるので `item` キーに投稿が入っています。
  */
 export async function deleteItem (arg: object & { item: Item }) {
-  const _continue = '削除する';
-  const cancel    = 'キャンセル';
+  const result = await window.showInformationMessage(messages.confirmation, messages.next, messages.cancel);
 
-  const result = await window.showInformationMessage('投稿を削除してもよろしいですか?', _continue, cancel);
-
-  if (result !== _continue) {
+  if (result !== messages.next) {
     return;
   }
 
   try {
     await client.deleteItem(arg.item.id);
-    return window.showInformationMessage('投稿を削除しました');
+    return window.showInformationMessage(messages.success);
   } catch (error) {
     switch (error.name) {
       case 'QiitaUnauthorizedError':

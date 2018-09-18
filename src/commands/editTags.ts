@@ -1,8 +1,8 @@
+import { Item } from 'qiita-js-2';
 import { QuickPickItem } from 'vscode';
 import { window } from 'vscode';
-import { Item } from '../../../qiita-js-2';
 import { client } from '../client';
-import { makeQuickPickItemFromTag, tagsPicker } from '../quicks/tagPicker';
+import { makeQuickPickItemFromTag, tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 
 const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPickItem>) => {
   const taggings = selectedItems.map((item) => ({
@@ -19,15 +19,14 @@ const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPickItem>) 
 
 export async function editTags (arg: object & { item: Item }) {
   const { item } = arg;
-  const { tags } = arg.item;
+  const { tags: taggings } = arg.item;
 
-  const selectedItems = await Promise.all(tags.map(async (tagging) => {
+  const selectedItems = await Promise.all(taggings.map(async (tagging) => {
     const tag = await client.fetchTag(tagging.name);
-    const item = makeQuickPickItemFromTag(tag.id, tag.followers_count);
-    return item;
+    return makeQuickPickItemFromTag(tag.id, tag.followers_count);
   }));
 
-  const input = tagsPicker(selectedItems);
+  const input = tagQuickPickCreator(selectedItems);
 
   input.show();
 

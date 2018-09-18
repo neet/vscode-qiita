@@ -1,9 +1,9 @@
 import { window } from 'vscode';
 
-export function visibilityPicker () {
-  const picker = window.createQuickPick();
-  picker.title = '投稿の公開範囲を選択してください';
-  picker.items = [
+export function visibilityQuickPickCreator () {
+  const quickPick = window.createQuickPick();
+  quickPick.title = '投稿の公開範囲を選択してください';
+  quickPick.items = [
     {
       label: '公開',
       description: '誰でも投稿を閲覧できます',
@@ -14,5 +14,5 @@ export function visibilityPicker () {
     },
   ];
 
-  return picker;
+  return quickPick;
 }

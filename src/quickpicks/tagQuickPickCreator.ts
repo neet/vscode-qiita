@@ -38,7 +38,7 @@ async function suggestTags (value: string) {
  * @param selectedItems 選択済みのタグ
  * @return QuickPicker
  */
-export function tagsPicker (selectedItems: QuickPickItem[]) {
+export function tagQuickPickCreator (selectedItems: QuickPickItem[]) {
   const input = window.createQuickPick();
 
   input.canSelectMany = true;
