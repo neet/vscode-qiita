@@ -21,7 +21,8 @@ async function suggestTags (value: string) {
   const results = (await client.searchTags(value)).slice(0, 9);
 
   // キーワードに相当するタグがまだ作成されていない場合、候補の一件目にそのタグを挿入
-  if (value && !results.map((tag) => tag.name).includes(value)) {
+  // tag.nameをケースインセンシティブで比較
+  if (value && !results.map((tag) => tag.name).map((name) => RegExp(name, 'i').test(value)).includes(true)) {
     results.unshift({
       name: value,
       url_name: value,
