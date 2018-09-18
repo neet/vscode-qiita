@@ -1,5 +1,4 @@
 import { workspace, WorkspaceConfiguration } from 'vscode';
-import { CONFIGURATION } from './constants';
 
 interface Configuration extends WorkspaceConfiguration {
   /** Qiitaのアクセストークン */
@@ -12,4 +11,4 @@ interface Configuration extends WorkspaceConfiguration {
   readonly gistOnCreateItem?: boolean;
 }
 
-export const configuration: Configuration = workspace.getConfiguration(CONFIGURATION);
+export const configuration: Configuration = workspace.getConfiguration('qiita');
