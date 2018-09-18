@@ -1,6 +1,7 @@
 import { CreateItemOptions } from 'qiita-js-2';
 import { commands, Uri, window, workspace } from 'vscode';
 import { client } from '../client';
+import { configuration } from '../configuration';
 import { tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
 import { visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
@@ -25,6 +26,8 @@ export function compose (arg: object & { path: string }) {
     tags: [],
     body: '',
     private: false,
+    tweet: configuration.tweetOnCreateItem,
+    gist: configuration.gistOnCreateItem,
   };
 
   workspace.openTextDocument(arg.path).then((document) => {
