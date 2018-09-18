@@ -1,5 +1,5 @@
+import { CreateItemOptions } from 'qiita-js-2';
 import { commands, Uri, window, workspace } from 'vscode';
-import { CreateItemOptions } from '../../../qiita-js-2';
 import { client } from '../client';
 import { tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
