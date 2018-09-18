@@ -1,19 +1,41 @@
 {
   "name": "vscode-qiita",
-  "displayName": "Qiita",
   "description": "Publish your article to Qiita",
   "version": "0.0.1",
-  "publisher": "Neetshin",
+  "main": "./out/extension",
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "yarn run compile && node ./node_modules/vscode/bin/test",
+    "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
+  },
   "engines": {
     "vscode": "^1.27.0"
   },
+  "dependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.10.1",
+    "core-js": "^2.5.7",
+    "fuse.js": "^3.2.1",
+    "jest": "^23.6.0",
+    "qiita-js-2": "^1.2.5",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.8.0",
+    "typescript": "^3.0.3",
+    "vscode": "^1.1.6",
+    "vscode-nls": "^4.0.0",
+    "vscode-nls-dev": "^3.2.2"
+  },
+  "displayName": "Qiita",
+  "publisher": "Neetshin",
   "categories": [
     "Other"
   ],
   "activationEvents": [
     "*"
   ],
-  "main": "./out/extension",
   "contributes": {
     "commands": [
       {
@@ -143,27 +165,5 @@
         }
       ]
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "yarn run compile && node ./node_modules/vscode/bin/test",
-    "test:lint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'"
-  },
-  "dependencies": {
-    "@types/jest": "^23.3.2",
-    "@types/node": "^10.10.1",
-    "core-js": "^2.5.7",
-    "fuse.js": "^3.2.1",
-    "jest": "^23.6.0",
-    "qiita-js-2": "^1.2.5",
-    "ts-jest": "^23.1.4",
-    "tslint": "^5.8.0",
-    "typescript": "^3.0.3",
-    "vscode": "^1.1.6",
-    "vscode-nls": "^4.0.0",
-    "vscode-nls-dev": "^3.2.2"
   }
 }
