@@ -1,6 +1,9 @@
 import { Item } from 'qiita-js-2';
 import { Command, TreeDataProvider, TreeItem, TreeItemCollapsibleState, Uri } from 'vscode';
+import * as nls from 'vscode-nls';
 import { client } from '../client';
+
+const localize = nls.loadMessageBundle();
 
 export class QiitaItemProvider implements TreeDataProvider<QiitaItem> {
 
@@ -27,7 +30,7 @@ export class QiitaItemProvider implements TreeDataProvider<QiitaItem> {
     return items.map((item) => {
       const command = {
         command:   'qiita.openItem',
-        title:     '',
+        title:     localize('commands.openItem.title', '開く'),
         arguments: [ item ],
       };
 
