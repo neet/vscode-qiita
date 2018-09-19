@@ -103,6 +103,14 @@
       }
     ],
     "menus": {
+      "commandPalette": [
+        { "command": "qiita.compose", "when": "false" },
+        { "command": "qiita.openItem", "when": "false" },
+        { "command": "qiita.deleteItem", "when": "false" },
+        { "command": "qiita.editTags", "when": "false" },
+        { "command": "qiita.openItemExternal", "when": "false"},
+        { "command": "qiita.makePublic", "when": "false"}
+      ],
       "editor/title": [
         {
           "command": "qiita.compose",
