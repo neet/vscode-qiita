@@ -12,18 +12,18 @@ const localize = nls.loadMessageBundle();
  */
 export async function deleteItem (arg: object & { item: Item }) {
   const next = localize(
-    'commands.qiita.deleteItem.confirm.next',
+    'commands.deleteItem.confirm.next',
     '削除する',
   );
 
   const result = await window.showInformationMessage(
     localize(
-      'commands.qiita.deleteItem.confirm.title',
+      'commands.deleteItem.confirm.title',
       '投稿を削除してもよろしいですか？',
     ),
     next,
     localize(
-      'commands.qiita.deleteItem.confirm.cancel',
+      'commands.deleteItem.confirm.cancel',
       'キャンセル',
     ),
   );
@@ -36,7 +36,7 @@ export async function deleteItem (arg: object & { item: Item }) {
     await client.deleteItem(arg.item.id);
 
     return window.showInformationMessage(localize(
-      'commands.qiita.deleteItem.success',
+      'commands.deleteItem.success',
       '投稿を削除しました',
     ));
   } catch (error) {

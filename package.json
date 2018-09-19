@@ -49,32 +49,32 @@
     "commands": [
       {
         "command": "qiita.compose",
-        "title": "%commands.qiita.compose.title%",
+        "title": "%commands.compose.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItem",
-        "title": "%commands.qiita.openItem.title%",
+        "title": "%commands.openItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.deleteItem",
-        "title": "%commands.qiita.deleteItem.title%",
+        "title": "%commands.deleteItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.editTags",
-        "title": "%commands.qiita.editTags.title%",
+        "title": "%commands.editTags.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItemExternal",
-        "title": "%commands.qiita.openItemExternal.title%",
+        "title": "%commands.openItemExternal.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.makePublic",
-        "title": "%commands.qiita.makePublic.title%",
+        "title": "%commands.makePublic.title%",
         "category": "Qiita"
       }
     ],
@@ -85,17 +85,17 @@
         "properties": {
           "qiita.token": {
             "type": "string",
-            "description": "%configuration.qiita.token.description%"
+            "description": "%configuration..token.description%"
           },
           "qiita.tweetOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "%configuration.qiita.tweetOnCreateItem.description%"
+            "description": "%configuration..tweetOnCreateItem.description%"
           },
           "qiita.gistOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "%configuration.qiita.gistOnCreateItem.description%"
+            "description": "%configuration..gistOnCreateItem.description%"
           }
         }
       }
@@ -170,7 +170,7 @@
       "qiita": [
         {
           "id": "qiitaItems",
-          "name": "%views.qiita.qiitaItem%"
+          "name": "%views.qiitaItem%"
         }
       ]
     }

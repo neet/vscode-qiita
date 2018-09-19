@@ -69,13 +69,13 @@ export function compose (arg: object & { path: string }): void {
       const item = await client.createItem(options);
 
       const openInBrowser = localize(
-        'commands.qiita.compose.openInBrowser',
+        'commands.compose.openInBrowser',
         'ブラウザで確認',
       );
 
       const result = await window.showInformationMessage(
         localize(
-          'commands.qiita.compose.success',
+          'commands.compose.success',
           '投稿を公開しました',
         ),
         openInBrowser,

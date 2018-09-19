@@ -13,24 +13,24 @@ const localize = nls.loadMessageBundle();
 export async function makePublic (arg: object & { item: Item }) {
   if (!arg.item.private) {
     return window.showInformationMessage(localize(
-      'commands.qiita.makePublic.failure.alredyPublic',
+      'commands.makePublic.failure.alredyPublic',
       'この投稿は既に公開されています。',
     ));
   }
 
   const next = localize(
-    'commands.qiita.makePublic.confirm.next',
+    'commands.makePublic.confirm.next',
     '公開にする',
   );
 
   const result = await window.showInformationMessage(
     localize(
-      'commands.qiita.makePublic.confirm.title',
+      'commands.makePublic.confirm.title',
       '公開範囲を公開にしてもよろしいですか？ 一度公開にしてしまうと非公開に戻すことは出来ません。',
     ),
     next,
     localize(
-      'commands.qiita.makePublic.confirm.cancel',
+      'commands.makePublic.confirm.cancel',
       'キャンセル',
     ),
   );
@@ -48,7 +48,7 @@ export async function makePublic (arg: object & { item: Item }) {
     });
 
     return window.showInformationMessage(localize(
-      'commands.qiita.makePublic.success',
+      'commands.makePublic.success',
       '公開範囲を公開に変更しました',
     ));
   } catch (error) {

@@ -43,7 +43,7 @@ export async function editTags (arg: object & { item: Item }) {
       await updater(item, input.selectedItems);
 
       return window.showInformationMessage(localize(
-        'commands.qiita.editTags.success',
+        'commands.editTags.success',
         'タグを編集しました',
       ));
     } catch (error) {

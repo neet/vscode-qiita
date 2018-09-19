@@ -6,29 +6,29 @@
   "general.failure.InternalServerError": "削除に失敗しました。Qiitaのサーバーがダウンしている可能性があります。",
   "general.failure.fallback": "ご迷惑をお掛けしてしまい申し訳ございませんが、エラーが発生しました。 バグの可能性がある場合は開発者にご報告いただけると幸いです。\nhttps://github.com/neet/vscode-qiita/issues",
 
-  "commands.qiita.compose.title": "Qiitaで公開",
-  "commands.qiita.compose.success": "投稿を公開しました",
-  "commands.qiita.compose.openInBrowser": "ブラウザで確認",
+  "commands.compose.title": "Qiitaで公開",
+  "commands.compose.success": "投稿を公開しました",
+  "commands.compose.openInBrowser": "ブラウザで確認",
 
-  "commands.qiita.openItem.title": "開く",
+  "commands.openItem.title": "開く",
 
-  "commands.qiita.deleteItem.title": "削除",
-  "commands.qiita.deleteItem.confirm.title": "投稿を削除してもよろしいですか？",
-  "commands.qiita.deleteItem.confirm.next": "削除する",
-  "commands.qiita.deleteItem.confirm.cancel": "キャンセル",
-  "commands.qiita.deleteItem.success": "投稿を削除しました",
+  "commands.deleteItem.title": "削除",
+  "commands.deleteItem.confirm.title": "投稿を削除してもよろしいですか？",
+  "commands.deleteItem.confirm.next": "削除する",
+  "commands.deleteItem.confirm.cancel": "キャンセル",
+  "commands.deleteItem.success": "投稿を削除しました",
 
-  "commands.qiita.editTags.title": "タグを編集",
-  "commands.qiita.editTags.success": "タグを編集しました",
+  "commands.editTags.title": "タグを編集",
+  "commands.editTags.success": "タグを編集しました",
 
-  "commands.qiita.openItemExternal.title": "ブラウザで表示",
+  "commands.openItemExternal.title": "ブラウザで表示",
 
-  "commands.qiita.makePublic.title": "投稿を公開にする",
-  "commands.qiita.makePublic.success": "公開範囲を公開に変更しました",
-  "commands.qiita.makePublic.confirm.title": "公開範囲を公開にしてもよろしいですか？ 一度公開にしてしまうと非公開に戻すことは出来ません。",
-  "commands.qiita.makePublic.confirm.next": "公開にする",
-  "commands.qiita.makePublic.confirm.cancel": "キャンセル",
-  "commands.qiita.makePublic.failure.alredyPublic": "この投稿は既に公開されています。",
+  "commands.makePublic.title": "投稿を公開にする",
+  "commands.makePublic.success": "公開範囲を公開に変更しました",
+  "commands.makePublic.confirm.title": "公開範囲を公開にしてもよろしいですか？ 一度公開にしてしまうと非公開に戻すことは出来ません。",
+  "commands.makePublic.confirm.next": "公開にする",
+  "commands.makePublic.confirm.cancel": "キャンセル",
+  "commands.makePublic.failure.alredyPublic": "この投稿は既に公開されています。",
 
   "quickpicks.tagQuickPick.title": "投稿に登録するタグを入力してください",
   "quickpicks.tagQuickPick.placeholder": "例) Rails React Mastodon",
@@ -44,9 +44,9 @@
   "quickpicks.visibilityQuickPick.private.label": "限定公開",
   "quickpicks.visibilityQuickPick.private.description": "投稿のURLを知っている人だけが投稿を閲覧できます",
 
-  "configuration.qiita.token.description": "Qiitaのアクセストークン",
-  "configuration.qiita.tweetOnCreateItem.description": "投稿を公開した際にTwitterで共有するかどうか",
-  "configuration.qiita.gistOnCreateItem.description": "投稿を公開した際にGitHub Gistで共有するかどうか",
+  "configuration..token.description": "Qiitaのアクセストークン",
+  "configuration..tweetOnCreateItem.description": "投稿を公開した際にTwitterで共有するかどうか",
+  "configuration..gistOnCreateItem.description": "投稿を公開した際にGitHub Gistで共有するかどうか",
 
-  "views.qiita.qiitaItem": "Qiitaの投稿"
+  "views.qiitaItem": "Qiitaの投稿"
 }
