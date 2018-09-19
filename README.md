@@ -1,19 +1,23 @@
 # <img src="https://i.imgur.com/qbSmJYY.png" alt="vscode-qiita" width="380px" />
-> Qiita integration for Visual studio code
 
 ![スクリーンショット](https://i.imgur.com/oyzlwX7.png)
 
-## 主な機能 😍
+> VSCode Qiita は **Visual Studio Code** で編集中の Markdownファイルを **Qiita** に簡単に投稿できる拡張機能です！
 
-*VSCode Qiita* は Visual Studio Codeで編集中の MarkdownファイルをQiitaに簡単に投稿できる拡張機能です。
+[![Build Status](https://travis-ci.com/neet/vscode-qiita.svg?branch=master)](https://travis-ci.com/neet/vscode-qiita)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c00b68ac7b99b4ffe755/maintainability)](https://codeclimate.com/github/neet/vscode-qiita/maintainability)
+
+## 更新履歴
+WIP
 
 ## 拡張機能の設定
 WIP
 
 ## 問題の報告 / フィードバック
-
-## 更新履歴
-WIP
+開発にご協力いただきありがとうございます 🙏
+- バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
+- もちろん、issueを建てずにフォークしてし、 [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
+- Visual Studio Marketplaceから評価してフィードバックを送っていただくことも可能です。
 
 ---
 
@@ -33,4 +37,4 @@ WIP
 </table>
 
 ## ライセンス
-MIT
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
