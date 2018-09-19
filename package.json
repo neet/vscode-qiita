@@ -1,8 +1,12 @@
 {
   "name": "vscode-qiita",
-  "description": "Publish your article to Qiita",
-  "version": "0.0.1",
+  "displayName": "VSCode Qiita",
+  "description": "Qiita integration for Visual Studio Code ",
+  "private": true,
+  "version": "0.0.1-rc.1",
+  "preview": true,
   "main": "./out/extension",
+  "license": "MIT",
   "scripts": {
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
@@ -33,14 +37,7 @@
     "vscode-nls": "^4.0.0",
     "vscode-nls-dev": "^3.2.2"
   },
-  "displayName": "Qiita",
-  "publisher": "Neetshin",
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "*"
-  ],
+  "activationEvents": ["*"],
   "contributes": {
     "commands": [
       {
@@ -170,5 +167,20 @@
         }
       ]
     }
+  },
+  "publisher": "Neetshin",
+  "homepage": "https://github.com/neet/vscode-qiita/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neet/vscode-qiita"
+  },
+  "bugs": {
+    "url": "https://github.com/neet/vscode-qiita/issues",
+  },
+  "categories": ["Other"],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "theme": "light",
+    "color": "#55c500"
   }
 }
