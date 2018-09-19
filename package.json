@@ -38,6 +38,8 @@
     "vscode-nls-dev": "^3.2.2"
   },
   "activationEvents": [
+    "onView:qiitaItems",
+    "onLanguage:markdown",
     "onCommand:qiita.compose",
     "onCommand:qiita.openItem",
     "onCommand:qiita.deleteItem",
