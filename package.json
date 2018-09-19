@@ -85,17 +85,17 @@
         "properties": {
           "qiita.token": {
             "type": "string",
-            "description": "%configuration..token.description%"
+            "description": "%configuration.token.description%"
           },
           "qiita.tweetOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "%configuration..tweetOnCreateItem.description%"
+            "description": "%configuration.tweetOnCreateItem.description%"
           },
           "qiita.gistOnCreateItem": {
             "type": "boolean",
             "default": false,
-            "description": "%configuration..gistOnCreateItem.description%"
+            "description": "%configuration.gistOnCreateItem.description%"
           }
         }
       }
