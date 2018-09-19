@@ -180,7 +180,7 @@
   "categories": ["Other"],
   "icon": "resources/icon.png",
   "galleryBanner": {
-    "theme": "light",
-    "color": "#55c500"
+    "theme": "dark",
+    "color": "#3f9200"
   }
 }
