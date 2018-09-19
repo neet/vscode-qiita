@@ -8,7 +8,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c00b68ac7b99b4ffe755/maintainability)](https://codeclimate.com/github/neet/vscode-qiita/maintainability)
 
 ## 更新履歴
-### 0.0.1 RC
+### 0.0.1
 最初のリリースです。
 
 ## 問題の報告 / フィードバック
