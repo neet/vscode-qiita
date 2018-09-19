@@ -1,11 +1,15 @@
 import { CreateItemOptions } from 'qiita-js-2';
 import { commands, Uri, window, workspace } from 'vscode';
+import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { configuration } from '../configuration';
 import { tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
 import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
-import { visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
+import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
 import { createMultiStepInput } from '../utils/createMultiStepInput';
+import { handleErrorMessage } from '../utils/errorHandler';
+
+const localize = nls.loadMessageBundle();
 
 /**
  * パスからファイル名を取得
@@ -58,19 +62,32 @@ export function compose (arg: object & { path: string }): void {
 
   // visibilityQuickPick終了時に公開状態を代入してQiita.createItemを呼び出し
   visibilityQuickPick.onDidAccept(async () => {
-    options.private = visibilityQuickPick.selectedItems[0].label === '限定公開';
-    const openInBrowswer = 'ブラウザで確認';
+    options.private = visibilityQuickPick.selectedItems[0].label === privateLabel;
 
     try {
       visibilityQuickPick.hide();
       const item = await client.createItem(options);
-      const result = await window.showInformationMessage('投稿を公開しました', openInBrowswer);
 
-      if (result === openInBrowswer) {
+      const openInBrowser = localize(
+        'commands.qiita.compose.openInBrowser',
+        'ブラウザで確認',
+      );
+
+      const result = await window.showInformationMessage(
+        localize(
+          'commands.qiita.compose.success',
+          '投稿を公開しました',
+        ),
+        openInBrowser,
+      );
+
+      if (result === openInBrowser) {
         commands.executeCommand('vscode.open', Uri.parse(item.url));
       }
+
+      return;
     } catch (error) {
-      window.showErrorMessage(error.toString());
+      return handleErrorMessage(error);
     }
   });
 

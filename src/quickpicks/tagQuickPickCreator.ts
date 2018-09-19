@@ -1,6 +1,9 @@
 import { SearchTagResult } from 'qiita-js-2';
 import { QuickPickItem, window } from 'vscode';
+import * as nls from 'vscode-nls';
 import { client } from '../client';
+
+const localize = nls.loadMessageBundle();
 
 /**
  * Tagの情報を基にQuickPickItemを作成します
@@ -10,7 +13,11 @@ import { client } from '../client';
  */
 export const makeQuickPickItemFromTag = (id: string, followersCount: number) => ({
   label: id,
-  description: `${followersCount}件の投稿`,
+  description: localize(
+    'quickpicks.tagQuickPick.item.description',
+    '{0}件の投稿',
+    followersCount,
+  ),
 });
 
 /**
@@ -44,6 +51,7 @@ export const insertInputRaw = (value: string, suggestions: SearchTagResult[]) =>
 export async function suggestTags (value: string): Promise<QuickPickItem[]> {
   const results = (await client.searchTags(value)).slice(0, 9);
   const formattedResults = insertInputRaw(value, results);
+
   return formattedResults.map((tag) => makeQuickPickItemFromTag(tag.name, tag.follower_count));
 }
 
@@ -58,8 +66,8 @@ export function tagQuickPickCreator (selectedItems?: QuickPickItem[]) {
   quickPick.canSelectMany = true;
   quickPick.items         = selectedItems || [];
   quickPick.selectedItems = selectedItems || [];
-  quickPick.title         = '投稿に登録するタグを入力してください';
-  quickPick.placeholder   = '例) Rails React Mastodon';
+  quickPick.title         = localize('quickpicks.tagQuickPick.title', '投稿に登録するタグを入力してください');
+  quickPick.placeholder   = localize('quickpicks.tagQuickPick.title', '例) Rails React Mastodon');
 
   quickPick.onDidChangeValue(async (value: string) => {
     quickPick.busy       = true;

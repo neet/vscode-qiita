@@ -52,11 +52,7 @@ export class QiitaItem extends TreeItem {
     super(item.title, collapsibleState);
   }
 
-  // public iconPath = this.collapsibleState === TreeItemCollapsibleState.Expanded
-  //   ? path.join(__filename, '..', '..', '..', 'resources', 'dark', 'file_focused.svg')
-  //   : path.join(__filename, '..', '..', '..', 'resources', 'dark', 'file.svg');
-
-  public resourceUri = Uri.parse('text.md');
+  public resourceUri = Uri.parse('file:///text.md');
 
   public contextValue = 'qiitaItems';
 }

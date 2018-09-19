@@ -1,7 +1,11 @@
 import { Item } from 'qiita-js-2';
 import { QuickPickItem, window } from 'vscode';
+import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { makeQuickPickItemFromTag, tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
+import { handleErrorMessage } from '../utils/errorHandler';
+
+const localize = nls.loadMessageBundle();
 
 export const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPickItem>) => {
   const taggings = selectedItems.map((item) => ({
@@ -16,6 +20,10 @@ export const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPick
   });
 };
 
+/**
+ * タグを編集するためのquickPickを作成
+ * @param arg コマンドから渡される引数
+ */
 export async function editTags (arg: object & { item: Item }) {
   const { item } = arg;
   const { tags: taggings } = arg.item;
@@ -31,11 +39,15 @@ export async function editTags (arg: object & { item: Item }) {
 
   input.onDidAccept(async () => {
     try {
-      await updater(item, input.selectedItems);
-      window.showInformationMessage('タグを編集しました');
       input.hide();
+      await updater(item, input.selectedItems);
+
+      return window.showInformationMessage(localize(
+        'commands.qiita.editTags.success',
+        'タグを編集しました',
+      ));
     } catch (error) {
-      window.showErrorMessage(error.toString());
+      return handleErrorMessage(error);
     }
   });
 }

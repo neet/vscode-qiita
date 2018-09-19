@@ -1,9 +1,14 @@
+import { QiitaError } from 'qiita-js-2';
 import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 
 const localize = nls.loadMessageBundle();
 
-export function handleErrorMessage (error: Error) {
+/**
+ * QiitaErrorオブジェクトの内容に応じてshowErrorMessageに適切なメッセージを表示します。
+ * @param error QiitaErrorを継承しているエラー
+ */
+export function handleErrorMessage <T extends QiitaError> (error: T) {
   switch (error.name) {
     case 'QiitaUnauthorizedError':
       return window.showErrorMessage(localize('general.failure.unauhtorized', 'リクエストに失敗しました。Qiitaアカウントを認証しているかお確かめの上もう一度お試しください'));

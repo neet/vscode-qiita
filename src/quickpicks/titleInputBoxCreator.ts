@@ -1,4 +1,7 @@
 import { window } from 'vscode';
+import * as nls from 'vscode-nls';
+
+const localize = nls.loadMessageBundle();
 
 /**
  * タイトルを指定させるInputBoxを作成
@@ -8,13 +11,24 @@ import { window } from 'vscode';
 export function titleInputBoxCreator (defaultValue?: string) {
   const inputBox = window.createInputBox();
 
-  inputBox.value       = defaultValue || '';
-  inputBox.title       = '投稿のタイトルを入力してください';
-  inputBox.placeholder = '例) サルでもわかる！Rails入門';
+  inputBox.value = defaultValue || '';
+
+  inputBox.title = localize(
+    'quickpicks.titleInputBox.title',
+    '投稿のタイトルを入力してください',
+  );
+
+  inputBox.placeholder = localize(
+    'quickpicks.titleInputBox.placeholder',
+    '例) サルでもわかる！Rails入門',
+  );
 
   inputBox.onDidChangeValue(() => {
     if (inputBox.value.length > 255) {
-      inputBox.validationMessage = 'タイトルは255文字まで有効です';
+      inputBox.validationMessage = localize(
+        'quickpicks.titleInputBox.validationMessage',
+        'タイトルは255文字まで有効です',
+      );
     }
   });
 

@@ -25,7 +25,7 @@
 
   "commands.qiita.makePublic.title": "投稿を公開にする",
   "commands.qiita.makePublic.success": "公開範囲を公開に変更しました",
-  "commands.qiita.makePublic.confirm.title": "投稿を削除してもよろしいですか？ 一度公開にしてしまうと非公開に戻すことは出来ません。",
+  "commands.qiita.makePublic.confirm.title": "公開範囲を公開にしてもよろしいですか？ 一度公開にしてしまうと非公開に戻すことは出来ません。",
   "commands.qiita.makePublic.confirm.next": "公開にする",
   "commands.qiita.makePublic.confirm.cancel": "キャンセル",
   "commands.qiita.makePublic.failure.alredyPublic": "この投稿は既に公開されています。",
