@@ -9,6 +9,12 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 
+## フィードバック
+開発にご協力いただきありがとうございます 🙏
+- バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
+- もちろん、issueを建てずにフォークして [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
+- [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)から評価してフィードバックを送っていただくことも可能です。
+
 ## Qiitaアカウントの連携方法
 Qiitaの[アプリケーションページ](https://qiita.com/settings/applications)を開き、新しいアクセストークンを発行します。
 
@@ -25,12 +31,6 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 コピーしたアクセストークンをVSCodeの *ユーザー設定 > Qiita* からアクセストークンのテキストボックスに貼り付けてください。再起動が必要な場合があります。
 
 ![ユーザー設定](https://i.imgur.com/YKhdRZ5.png)
-
-## フィードバック
-開発にご協力いただきありがとうございます 🙏
-- バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
-- もちろん、issueを建てずにフォークして [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
-- Visual Studio Marketplaceから評価してフィードバックを送っていただくことも可能です。
 
 ## 拡張機能の設定
 ユーザー設定は `Ctrl+,` / `⌘+,` からGUIで変更できますが、必要に応じて `settings.json` 内の以下のキーを直接編集して設定を変更できます
