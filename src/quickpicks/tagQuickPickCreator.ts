@@ -1,3 +1,4 @@
+import { SearchTagResult } from 'qiita-js-2';
 import { QuickPickItem, window } from 'vscode';
 import { client } from '../client';
 
@@ -13,25 +14,37 @@ export const makeQuickPickItemFromTag = (id: string, followersCount: number) => 
 });
 
 /**
+ * ユーザーからの入力が検索結果に無いときにその入力を結果の先頭に挿入
+ * @param value ユーザーの入力
+ * @param suggestions 検索結果
+ * @return フォーマットされた検索結果
+ */
+export const insertInputRaw = (value: string, suggestions: SearchTagResult[]) => {
+  if (!value) {
+    return suggestions;
+  }
+
+  if (suggestions
+    .map((tag) => tag.name)
+    .map((name) => RegExp(name, 'i').test(value))
+    .includes(true)) {
+    return suggestions;
+  }
+
+  suggestions.unshift({ name: value, url_name: value, follower_count: 0, item_count: 0 });
+
+  return suggestions;
+};
+
+/**
  * キーワードからタグを検索して QuickPickItem の形で返します
  * @param value キーワード
  * @return QuickPickItem
  */
-async function suggestTags (value: string) {
+export async function suggestTags (value: string): Promise<QuickPickItem[]> {
   const results = (await client.searchTags(value)).slice(0, 9);
-
-  // キーワードに相当するタグがまだ作成されていない場合、候補の一件目にそのタグを挿入
-  // tag.nameをケースインセンシティブで比較
-  if (value && !results.map((tag) => tag.name).map((name) => RegExp(name, 'i').test(value)).includes(true)) {
-    results.unshift({
-      name: value,
-      url_name: value,
-      follower_count: 0,
-      item_count: 0,
-    });
-  }
-
-  return results.map((tag) => makeQuickPickItemFromTag(tag.name, tag.follower_count));
+  const formattedResults = insertInputRaw(value, results);
+  return formattedResults.map((tag) => makeQuickPickItemFromTag(tag.name, tag.follower_count));
 }
 
 /**
