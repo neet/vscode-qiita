@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getFilenameFromPath } from '../../commands/compose';
+import { getFilenameFromPath } from '../../utils/getFilenameFromPath';
 
 describe('compose', () => {
   it('パスから拡張子を除いたファイル名を取得', () => {

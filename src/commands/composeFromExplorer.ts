@@ -8,24 +8,15 @@ import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
 import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
 import { createMultiStepInput } from '../utils/createMultiStepInput';
 import { handleErrorMessage } from '../utils/errorHandler';
+import { getFilenameFromPath } from '../utils/getFilenameFromPath';
 
 const localize = nls.loadMessageBundle();
-
-/**
- * パスからファイル名を取得
- * @param path 相対/絶対パス
- * @return ファイル名
- */
-export const getFilenameFromPath = (path: string) => {
-  const splitPath = path.split('/');
-  return splitPath[splitPath.length - 1].split('.')[0];
-};
 
 /**
  * 投稿を公開するためのQuickPickとInputBoxを表示
  * @param arg コマンドから渡される引数
  */
-export function compose (arg: object & { path: string }): void {
+export function composeFromExplorer (arg: object & { path: string }): void {
   const fileName = getFilenameFromPath(arg.path);
 
   const titleInputBox       = titleInputBoxCreator(fileName);

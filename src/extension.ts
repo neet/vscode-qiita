@@ -1,6 +1,7 @@
 import { commands, ExtensionContext, window } from 'vscode';
 import * as nls from 'vscode-nls';
-import { compose } from './commands/compose';
+import { composeFromExplorer } from './commands/composeFromExplorer';
+import { composeFromTextEditor } from './commands/composeFromTextEditor';
 import { deleteItem } from './commands/deleteItem';
 import { editTags } from './commands/editTags';
 import { makePublic } from './commands/makePublic';
@@ -18,7 +19,8 @@ export function activate (context: ExtensionContext) {
     commands.registerCommand('qiita.openItem', openItem(context.storagePath)),
     commands.registerCommand('qiita.editTags', editTags),
     commands.registerCommand('qiita.makePublic', makePublic),
-    commands.registerCommand('qiita.compose', compose),
+    commands.registerCommand('qiita.composeFromExplorer', composeFromExplorer),
+    commands.registerCommand('qiita.composeFromTextEditor', composeFromTextEditor),
     commands.registerCommand('qiita.openItemExternal', openItemExternal),
     commands.registerCommand('qiita.deleteItem', deleteItem),
   );

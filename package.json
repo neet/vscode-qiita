@@ -40,7 +40,8 @@
   "activationEvents": [
     "onView:qiitaItems",
     "onLanguage:markdown",
-    "onCommand:qiita.compose",
+    "onCommand:qiita.composeFromTextEditor",
+    "onCommand:qiita.composeFromExplorer",
     "onCommand:qiita.openItem",
     "onCommand:qiita.deleteItem",
     "onCommand:qiita.editTags",
@@ -50,7 +51,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "qiita.compose",
+        "command": "qiita.composeFromTextEditor",
+        "title": "%commands.compose.title%",
+        "category": "Qiita"
+      },
+      {
+        "command": "qiita.composeFromExplorer",
         "title": "%commands.compose.title%",
         "category": "Qiita"
       },
@@ -104,7 +110,8 @@
     ],
     "menus": {
       "commandPalette": [
-        { "command": "qiita.compose", "when": "false" },
+        { "command": "qiita.composeFromTextEditor" },
+        { "command": "qiita.composeFromExplorer", "when": "false" },
         { "command": "qiita.openItem", "when": "false" },
         { "command": "qiita.deleteItem", "when": "false" },
         { "command": "qiita.editTags", "when": "false" },
@@ -113,28 +120,28 @@
       ],
       "editor/title": [
         {
-          "command": "qiita.compose",
+          "command": "qiita.composeFromTextEditor",
           "when": "resourceLangId == markdown",
           "group": "3_open"
         }
       ],
       "editor/context": [
         {
-          "command": "qiita.compose",
+          "command": "qiita.composeFromTextEditor",
           "when": "resourceLangId == markdown",
           "group": "z_commands"
         }
       ],
       "editor/title/context": [
         {
-          "command": "qiita.compose",
+          "command": "qiita.composeFromExplorer",
           "when": "resourceLangId == markdown",
           "group": "1_modification"
         }
       ],
       "explorer/context": [
         {
-          "command": "qiita.compose",
+          "command": "qiita.composeFromExplorer",
           "when": "resourceLangId == markdown",
           "group": "7_modification"
         }
