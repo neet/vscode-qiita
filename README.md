@@ -29,7 +29,8 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 
 ![アクセストークン](https://i.imgur.com/l6V6qmg.png)
 
-コピーしたアクセストークンをVSCodeのユーザー設定 > Qiitaからアクセストークンのテキストボックスに貼り付けてリドードしてください。
+コピーしたアクセストークンをVSCodeのユーザー設定 > Qiitaからアクセストークンのテキストボックスに貼り付けてリロードしてください。
+
 ![ユーザー設定](https://i.imgur.com/YKhdRZ5.png)
 
 ## 拡張機能の設定
