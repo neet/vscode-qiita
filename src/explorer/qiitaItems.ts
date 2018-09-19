@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { Item } from 'qiita-js-2';
 import { Command, TreeDataProvider, TreeItem, TreeItemCollapsibleState, Uri } from 'vscode';
 import { client } from '../client';
@@ -29,7 +28,7 @@ export class QiitaItemProvider implements TreeDataProvider<QiitaItem> {
       const command = {
         command:   'qiita.openItem',
         title:     '',
-        arguments: [ path ],
+        arguments: [ item ],
       };
 
       return new QiitaItem(item, TreeItemCollapsibleState.None, command);

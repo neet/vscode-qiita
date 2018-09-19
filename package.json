@@ -138,11 +138,6 @@
           "group": "navigation"
         },
         {
-          "command": "qiita.openItem",
-          "when": "viewItem == qiitaItems",
-          "group": "1_modification"
-        },
-        {
           "command": "qiita.editTags",
           "when": "viewItem == qiitaItems",
           "group": "1_modification"

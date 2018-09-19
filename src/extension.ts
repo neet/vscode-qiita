@@ -12,7 +12,6 @@ import './polyfills';
 nls.config(process.env.VSCODE_NLS_CONFIG as nls.Options)();
 
 export function activate (context: ExtensionContext) {
-  console.log(context);
   window.registerTreeDataProvider('qiitaItems', new QiitaItemProvider());
 
   context.subscriptions.push(
