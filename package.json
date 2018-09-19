@@ -37,37 +37,44 @@
     "vscode-nls": "^4.0.0",
     "vscode-nls-dev": "^3.2.2"
   },
-  "activationEvents": ["*"],
+  "activationEvents": [
+    "onCommand:qiita.compose",
+    "onCommand:qiita.openItem",
+    "onCommand:qiita.deleteItem",
+    "onCommand:qiita.editTags",
+    "onCommand:qiita.openItemExternal",
+    "onCommand:qiita.makePublic"
+  ],
   "contributes": {
     "commands": [
       {
         "command": "qiita.compose",
-        "title": "%commads.qiita.compose.title%",
+        "title": "%commands.qiita.compose.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItem",
-        "title": "%commads.qiita.openItem.title%",
+        "title": "%commands.qiita.openItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.deleteItem",
-        "title": "%commads.qiita.deleteItem.title%",
+        "title": "%commands.qiita.deleteItem.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.editTags",
-        "title": "%commads.qiita.editTags.title%",
+        "title": "%commands.qiita.editTags.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.openItemExternal",
-        "title": "%commads.qiita.openItemExternal.title%",
+        "title": "%commands.qiita.openItemExternal.title%",
         "category": "Qiita"
       },
       {
         "command": "qiita.makePublic",
-        "title": "%commads.qiita.makePublic.title%",
+        "title": "%commands.qiita.makePublic.title%",
         "category": "Qiita"
       }
     ],
