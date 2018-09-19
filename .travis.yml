@@ -1,0 +1,36 @@
+language: node_js
+
+sudo: false
+
+os:
+  - osx
+  - linux
+
+cache:
+  directories:
+    - $HOME/.cache/yarn
+    - node_modules
+    - .vscode-test
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: true
+
+before_install:
+  - if [ $TRAVIS_OS_NAME == "linux" ]; then
+      export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
+      sh -e /etc/init.d/xvfb start;
+      sleep 3;
+    fi
+
+install:
+  - yarn
+
+before_script:
+  - "yarn run vscode:prepublish"
+
+script:
+  - "yarn run test"
