@@ -1,6 +1,6 @@
 version: "2"
 checks:
-  file-lines:
+  method-lines:
     enabled: false
   similar-code:
     enabled: false
