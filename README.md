@@ -9,10 +9,6 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 
-## 更新履歴
-### 0.0.1
-最初のリリースです。
-
 ## 問題の報告 / フィードバック
 開発にご協力いただきありがとうございます 🙏
 - バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
