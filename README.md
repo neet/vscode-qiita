@@ -8,16 +8,22 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c00b68ac7b99b4ffe755/maintainability)](https://codeclimate.com/github/neet/vscode-qiita/maintainability)
 
 ## 更新履歴
-WIP
-
-## 拡張機能の設定
-WIP
+### 0.0.1 RC
+最初のリリースです。
 
 ## 問題の報告 / フィードバック
 開発にご協力いただきありがとうございます 🙏
 - バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
 - もちろん、issueを建てずにフォークしてし、 [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
 - Visual Studio Marketplaceから評価してフィードバックを送っていただくことも可能です。
+
+## 拡張機能の設定
+### `qiita.token`
+Qiita APIのアクセストークンを設定します。
+### `qiita.tweetOnCreateItem`
+投稿を公開した際にTwitterで共有するかどうかを指定できます。(Twitter連携ログイン済みの場合のみ)
+### `qiita.gistOnCreateItem`
+投稿を公開した際にGitHub Gistで共有するかどうかを指定できます。(GitHub連携ログイン済みの場合のみ)
 
 ---
 
