@@ -7,8 +7,6 @@ const localize = nls.loadMessageBundle();
 
 export function openItem (storagePath?: string) {
   return async (item: Item) => {
-    console.log(item);
-
     try {
       const filePath = `${storagePath}/${item.id}.md`;
       const fileUri  = `file://${filePath}`;
