@@ -6,6 +6,8 @@
 
 [![Build Status](https://travis-ci.com/neet/vscode-qiita.svg?branch=master)](https://travis-ci.com/neet/vscode-qiita)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c00b68ac7b99b4ffe755/maintainability)](https://codeclimate.com/github/neet/vscode-qiita/maintainability)
+[![Version](https://vsmarketplacebadge.apphb.com/version/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 
 ## 更新履歴
 ### 0.0.1
@@ -14,7 +16,7 @@
 ## 問題の報告 / フィードバック
 開発にご協力いただきありがとうございます 🙏
 - バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
-- もちろん、issueを建てずにフォークしてし、 [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
+- もちろん、issueを建てずにフォークして [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
 - Visual Studio Marketplaceから評価してフィードバックを送っていただくことも可能です。
 
 ## 拡張機能の設定
