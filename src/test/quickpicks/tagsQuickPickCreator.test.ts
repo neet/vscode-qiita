@@ -4,7 +4,7 @@ import {
   makeQuickPickItemFromTag,
   tagQuickPickCreator,
   validateTagQuickPick,
-} from '../../quickpicks/tagQuickPickCreator';
+} from '../../quickpicks/tagQuickPick';
 
 describe('tagQuickPickCreator', () => {
   it('渡されたIDと文字列からQuickPickItemを返す', () => {

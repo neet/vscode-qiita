@@ -4,9 +4,9 @@ import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { configuration } from '../configuration';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
-import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPickCreator';
-import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBoxCreator';
-import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
+import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPick';
+import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBox';
+import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPick';
 import { handleErrorMessage } from '../utils/errorHandler';
 import { getFilenameFromPath } from '../utils/getFilenameFromPath';
 

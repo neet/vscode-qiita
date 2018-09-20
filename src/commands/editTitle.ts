@@ -3,7 +3,7 @@ import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
-import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBoxCreator';
+import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBox';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   titleInputBoxCreator,
   validateTitleInputBox,
-} from '../../quickpicks/titleInputBoxCreator';
+} from '../../quickpicks/titleInputBox';
 
 describe('titleInputBoxCreator', () => {
   it('デフォルトの値を指定してInputBoxを作成', () => {

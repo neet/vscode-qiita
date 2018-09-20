@@ -3,7 +3,7 @@ import { QuickPickItem, window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
-import { makeQuickPickItemFromTag, tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPickCreator';
+import { makeQuickPickItemFromTag, tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPick';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();
