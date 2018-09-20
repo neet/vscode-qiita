@@ -3,7 +3,7 @@
   "displayName": "VSCode Qiita",
   "description": "Qiita integration for Visual Studio Code ",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "preview": true,
   "main": "./out/extension",
   "license": "MIT",
@@ -114,14 +114,37 @@
     ],
     "menus": {
       "commandPalette": [
-        { "command": "qiita.compose" },
-        { "command": "qiita.openItem", "when": "false" },
-        { "command": "qiita.deleteItem", "when": "false" },
-        { "command": "qiita.editTags", "when": "false" },
-        { "command": "qiita.openItemExternal", "when": "false"},
-        { "command": "qiita.makePublic", "when": "false"},
-        { "command": "qiita.editTitle", "when": "false" },
-        { "command": "qiita.expandItems", "when": "false" }
+        {
+          "command": "qiita.compose"
+        },
+        {
+          "command": "qiita.openItem",
+          "when": "false"
+        },
+        {
+          "command": "qiita.deleteItem",
+          "when": "false"
+        },
+        {
+          "command": "qiita.editTags",
+          "when": "false"
+        },
+        {
+          "command": "qiita.openItemExternal",
+          "when": "false"
+        },
+        {
+          "command": "qiita.makePublic",
+          "when": "false"
+        },
+        {
+          "command": "qiita.editTitle",
+          "when": "false"
+        },
+        {
+          "command": "qiita.expandItems",
+          "when": "false"
+        }
       ],
       "editor/title": [
         {
@@ -206,7 +229,9 @@
   "bugs": {
     "url": "https://github.com/neet/vscode-qiita/issues"
   },
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "icon": "resources/icon.png",
   "galleryBanner": {
     "theme": "dark",
