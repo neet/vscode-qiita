@@ -147,21 +147,18 @@
       "editor/title": [
         {
           "command": "qiita.compose",
-          "when": "resourceLangId == markdown",
           "group": "3_open"
         }
       ],
       "editor/context": [
         {
           "command": "qiita.compose",
-          "when": "resourceLangId == markdown",
           "group": "z_commands"
         }
       ],
       "editor/title/context": [
         {
           "command": "qiita.compose",
-          "when": "resourceLangId == markdown",
           "group": "1_modification"
         }
       ],
