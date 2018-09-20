@@ -4,6 +4,10 @@ defaultSeverity: warning
 extends:
 - tslint:recommended
 
+linterOptions:
+  exclude:
+    - src/test/**
+
 rules:
   max-classes-per-file: false
   no-duplicate-imports: true
