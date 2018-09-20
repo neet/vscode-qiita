@@ -78,6 +78,11 @@
         "command": "qiita.makePublic",
         "title": "%commands.makePublic.title%",
         "category": "Qiita"
+      },
+      {
+        "command": "qiita.editTitle",
+        "title": "%commands.editTitle.title%",
+        "category": "Qiita"
       }
     ],
     "configuration": [
@@ -109,7 +114,8 @@
         { "command": "qiita.deleteItem", "when": "false" },
         { "command": "qiita.editTags", "when": "false" },
         { "command": "qiita.openItemExternal", "when": "false"},
-        { "command": "qiita.makePublic", "when": "false"}
+        { "command": "qiita.makePublic", "when": "false"},
+        { "command": "qiita.editTitle", "when": "false" }
       ],
       "editor/title": [
         {
@@ -152,6 +158,11 @@
         },
         {
           "command": "qiita.makePublic",
+          "when": "viewItem == qiitaItems",
+          "group": "1_modification"
+        },
+        {
+          "command": "qiita.editTitle",
           "when": "viewItem == qiitaItems",
           "group": "1_modification"
         },

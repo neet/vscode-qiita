@@ -3,6 +3,7 @@ import * as nls from 'vscode-nls';
 import { compose } from './commands/compose';
 import { deleteItem } from './commands/deleteItem';
 import { editTags } from './commands/editTags';
+import { editTitle } from './commands/editTitle';
 import { makePublic } from './commands/makePublic';
 import { openItem } from './commands/openItem';
 import { openItemExternal } from './commands/openItemExternal';
@@ -21,6 +22,7 @@ export function activate (context: ExtensionContext) {
     commands.registerCommand('qiita.compose', compose),
     commands.registerCommand('qiita.openItemExternal', openItemExternal),
     commands.registerCommand('qiita.deleteItem', deleteItem),
+    commands.registerCommand('qiita.editTitle', editTitle),
   );
 }
 

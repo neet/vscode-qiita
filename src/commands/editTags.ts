@@ -22,11 +22,11 @@ export const updater = async (item: Item, selectedItems: ReadonlyArray<QuickPick
 
 /**
  * タグを編集するためのquickPickを作成
- * @param arg コマンドから渡される引数
+ * @param resource コマンドから渡される引数
  */
-export async function editTags (arg: object & { item: Item }) {
-  const { item } = arg;
-  const taggings = arg.item.tags;
+export async function editTags (resource: { item: Item }) {
+  const { item } = resource;
+  const taggings = resource.item.tags;
 
   // 既存のタグを取得してselectedItemsとして初期化
   const selectedItems = await Promise.all(taggings.map(async (tagging) => {
@@ -35,8 +35,6 @@ export async function editTags (arg: object & { item: Item }) {
   }));
 
   const quickPick = tagQuickPickCreator(selectedItems);
-
-  quickPick.show();
 
   quickPick.onDidAccept(async () => {
     if (!validateTagQuickPick(quickPick)) {
@@ -59,4 +57,6 @@ export async function editTags (arg: object & { item: Item }) {
       return handleErrorMessage(error);
     }
   });
+
+  quickPick.show();
 }

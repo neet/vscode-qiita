@@ -8,10 +8,10 @@ const localize = nls.loadMessageBundle();
 
 /**
  * 公開状態を変更するか確認するダイアログを表示して、公開状態を変更します
- * @param arg コマンドから渡される引数
+ * @param resource コマンドから渡される引数
  */
-export async function makePublic (arg: object & { item: Item }) {
-  if (!arg.item.private) {
+export async function makePublic (resource: { item: Item }) {
+  if (!resource.item.private) {
     return window.showInformationMessage(localize(
       'commands.makePublic.failure.alredyPublic',
       'この投稿は既に公開されています。',
@@ -40,10 +40,10 @@ export async function makePublic (arg: object & { item: Item }) {
   }
 
   try {
-    await client.updateItem(arg.item.id, {
-      body: arg.item.body,
-      title: arg.item.title,
-      tags: arg.item.tags,
+    await client.updateItem(resource.item.id, {
+      body: resource.item.body,
+      title: resource.item.title,
+      tags: resource.item.tags,
       private: false,
     });
 

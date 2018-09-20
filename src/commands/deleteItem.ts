@@ -8,9 +8,9 @@ const localize = nls.loadMessageBundle();
 
 /**
  * コマンド `qiita.deleteItem` のハンドラーで、Qiitaの投稿を削除します。
- * @param arg Commandで渡される引数。qiitaItemsビューから発行されるので `item` キーに投稿が入っています。
+ * @param resource Commandで渡される引数。qiitaItemsビューから発行されるので `item` キーに投稿が入っています。
  */
-export async function deleteItem (arg: object & { item: Item }) {
+export async function deleteItem (resource: { item: Item }) {
   const next = localize(
     'commands.deleteItem.confirm.next',
     '削除する',
@@ -33,7 +33,7 @@ export async function deleteItem (arg: object & { item: Item }) {
   }
 
   try {
-    await client.deleteItem(arg.item.id);
+    await client.deleteItem(resource.item.id);
 
     return window.showInformationMessage(localize(
       'commands.deleteItem.success',

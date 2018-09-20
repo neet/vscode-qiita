@@ -31,6 +31,9 @@
   "commands.makePublic.confirm.cancel": "キャンセル",
   "commands.makePublic.failure.alredyPublic": "この投稿は既に公開されています。",
 
+  "commands.editTitle.title": "タイトルを編集",
+  "commands.editTitle.success": "タイトルを編集しました",
+
   "quickpicks.tagQuickPick.title": "投稿に登録するタグを入力してください",
   "quickpicks.tagQuickPick.placeholder": "例) Rails React Mastodon",
   "quickpicks.tagQuickPick.item.description": "{0}件の投稿",
