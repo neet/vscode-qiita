@@ -15,7 +15,8 @@
 - もちろん、issueを建てずにフォークして [pull request](https://github.com/neet/vscode-qiita/pulls) を送っていただいても構いません！
 - [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)から評価してフィードバックを送っていただくことも可能です。
 
-## Qiitaアカウントの連携方法
+## 使い方
+### Qiitaアカウントの連携方法
 Qiitaの[アプリケーションページ](https://qiita.com/settings/applications)を開き、新しいアクセストークンを発行します。
 
 ![新しいアクセストークンを発行](https://i.imgur.com/LPtgosR.png)
@@ -32,7 +33,7 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 
 ![ユーザー設定](https://i.imgur.com/YKhdRZ5.png)
 
-## 投稿を公開
+### 投稿を公開
 開いているテキストエディター上で右クリック > Qiitaで公開 から編集中のファイルをQiitaに公開することができます。公開範囲、タイトル、タグも表示されるダイアログから設定できます。
 
 ![Qiitaで公開(コンテキスト)](https://i.imgur.com/Lblsr7U.png)
@@ -41,7 +42,16 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 
 ![Qiitaで公開(コマンドパレット)](https://i.imgur.com/Zn4mBQq.png)
 
-## 拡張機能の設定
+### 投稿の編集
+既存の投稿は右側に表示されるアクティビティバーからQiitaのロゴをクリックした際に表示されるエクスプローラーから編集できます。
+
+![既存の投稿](https://i.imgur.com/JgnGs8Q.png)
+
+公開範囲やタイトル、タグなどは右クリックメニューから変更可能です。
+
+![既存の投稿(コンテキスト)](https://i.imgur.com/MdmqXRI.png)
+
+### 拡張機能の設定
 ユーザー設定は `Ctrl+,` / `⌘+,` からGUIで変更できますが、必要に応じて `settings.json` 内の以下のキーを直接編集して設定を変更できます
 
 ### `qiita.token`
