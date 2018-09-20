@@ -3,16 +3,13 @@ import { commands, Uri, window, workspace } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { configuration } from '../configuration';
-import { tagQuickPickCreator } from '../quickpicks/tagQuickPickCreator';
-import { titleInputBoxCreator } from '../quickpicks/titleInputBoxCreator';
+import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPickCreator';
+import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBoxCreator';
 import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
-import { createMultiStepInput } from '../utils/createMultiStepInput';
 import { handleErrorMessage } from '../utils/errorHandler';
 import { getFilenameFromPath } from '../utils/getFilenameFromPath';
 
 const localize = nls.loadMessageBundle();
-
-
 
 /**
  * アクティブなテキストエディタから投稿を公開するコマンドパレット向け関数
@@ -32,10 +29,9 @@ export async function compose (resource?: { path: string }) {
   if (resource && resource.path) {
     options.title = getFilenameFromPath(resource.path);
     options.body  = await workspace.openTextDocument(resource.path).then((document) => document.getText());
-  }
 
   // テキストエディタから発火した場合
-  if (window.activeTextEditor) {
+  } else if (window.activeTextEditor) {
     options.title = getFilenameFromPath(window.activeTextEditor.document.fileName);
     options.body  = window.activeTextEditor.document.getText();
   }
@@ -44,26 +40,49 @@ export async function compose (resource?: { path: string }) {
   const tagsQuickPick       = tagQuickPickCreator();
   const visibilityQuickPick = visibilityQuickPickCreator();
 
+  // ステップ数を追加
+  [titleInputBox, tagsQuickPick, visibilityQuickPick].forEach((step, i, steps) => {
+    step.totalSteps = steps.length;
+    step.step = i;
+  });
+
   // titleInputBoxからタイトルを代入
   titleInputBox.onDidAccept(() => {
-    options.title = titleInputBox.value;
+    if (!validateTitleInputBox(titleInputBox)) {
+      window.showErrorMessage(localize(
+        'quickpicks.titleInputBox.failure.validationError',
+        'タイトルは1文字以上255文字以内で入力してください。',
+      ));
+    } else {
+      options.title = titleInputBox.value;
+      titleInputBox.hide();
+      tagsQuickPick.show();
+    }
   });
 
   // tagQuickPickからタグを代入
   tagsQuickPick.onDidAccept(() => {
-    options.tags = tagsQuickPick.selectedItems.map((item) => ({
-      name: item.label,
-      versions: [],
-    }));
+    if (!validateTagQuickPick(tagsQuickPick)) {
+      window.showErrorMessage(localize(
+        'quickpicks.tagQuickPick.failure.validationError',
+        'タグは1つ以上5つ以内で選択してください。',
+      ));
+    } else {
+      options.tags = tagsQuickPick.selectedItems.map((item) => ({
+        name: item.label,
+        versions: [],
+      }));
+      tagsQuickPick.hide();
+      visibilityQuickPick.show();
+    }
   });
 
   // visibilityQuickPick終了時に公開状態を代入してQiita.createItemを呼び出し
   visibilityQuickPick.onDidAccept(async () => {
     options.private = visibilityQuickPick.selectedItems[0].label === privateLabel;
+    visibilityQuickPick.hide();
 
     try {
-      visibilityQuickPick.hide();
-
       const item = await client.createItem(options);
 
       const openInBrowser = localize(
@@ -82,16 +101,11 @@ export async function compose (resource?: { path: string }) {
       if (result === openInBrowser) {
         commands.executeCommand('vscode.open', Uri.parse(item.url));
       }
-
-      return;
     } catch (error) {
-      return handleErrorMessage(error);
+      handleErrorMessage(error);
     }
   });
 
-  createMultiStepInput([
-    titleInputBox,
-    tagsQuickPick,
-    visibilityQuickPick,
-  ])();
+  // 1つ目のステップから帰納的に呼び出し
+  titleInputBox.show();
 }

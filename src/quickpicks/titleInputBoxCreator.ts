@@ -1,7 +1,16 @@
-import { window } from 'vscode';
+import { InputBox, window } from 'vscode';
 import * as nls from 'vscode-nls';
 
 const localize = nls.loadMessageBundle();
+
+/**
+ * タイトルのバリデーション 1文字以上255文字以内
+ * @param value バリデートするタイトル
+ * @return 結果を示す真理値
+ */
+export const validateTitleInputBox = (inputBox: InputBox) => {
+  return inputBox.value.length >= 1 && inputBox.value.length <= 255;
+};
 
 /**
  * タイトルを指定させるInputBoxを作成
@@ -24,11 +33,13 @@ export function titleInputBoxCreator (defaultValue?: string) {
   );
 
   inputBox.onDidChangeValue(() => {
-    if (inputBox.value.length > 255) {
+    if (!validateTitleInputBox(inputBox)) {
       inputBox.validationMessage = localize(
         'quickpicks.titleInputBox.validationMessage',
         'タイトルは255文字まで有効です',
       );
+    } else {
+      inputBox.validationMessage = '';
     }
   });
 

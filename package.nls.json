@@ -34,10 +34,12 @@
   "quickpicks.tagQuickPick.title": "投稿に登録するタグを入力してください",
   "quickpicks.tagQuickPick.placeholder": "例) Rails React Mastodon",
   "quickpicks.tagQuickPick.item.description": "{0}件の投稿",
+  "quickpicks.tagQuickPick.failure.validationError": "タグは1つ以上5つ以内で選択してください。",
 
   "quickpicks.titleInputBox.title": "投稿のタイトルを入力してください",
   "quickpicks.titleInputBox.placeholder": "例) サルでもわかる！Rails入門",
-  "quickpicks.titleInputBox.validationMessage": "タイトルは255文字まで有効です",
+  "quickpicks.titleInputBox.validationMessage": "タイトルは1文字から255文字まで有効です",
+  "quickpicks.titleInputBox.failure.validationError": "タイトルは1文字以上255文字以内で入力してください。",
 
   "quickpicks.visibilityQuickPick.title": "投稿の公開範囲を選択してください",
   "quickpicks.visibilityQuickPick.public.label": "公開",

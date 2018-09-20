@@ -1,5 +1,10 @@
 import { expect } from 'chai';
-import { insertInputRaw, makeQuickPickItemFromTag } from '../../quickpicks/tagQuickPickCreator';
+import {
+  insertInputRaw,
+  makeQuickPickItemFromTag,
+  tagQuickPickCreator,
+  validateTagQuickPick,
+} from '../../quickpicks/tagQuickPickCreator';
 
 describe('tagQuickPickCreator', () => {
   it('渡されたIDと文字列からQuickPickItemを返す', () => {
@@ -19,5 +24,26 @@ describe('tagQuickPickCreator', () => {
     ]);
 
     expect(result).to.deep.include({ name: 'apple', url_name: 'apple', follower_count: 0, item_count: 0});
+  });
+
+  it('選択されたアイテムが0件のときにバリデーションエラー', () => {
+    const quickPick = tagQuickPickCreator([]);
+    const result  = validateTagQuickPick(quickPick);
+
+    expect(result).to.be.false;
+  });
+
+  it('選択されたアイテムが5件以上のときにバリデーションエラー', () => {
+    const quickPick = tagQuickPickCreator([
+      { label: 'apple',     description: '1件の投稿' },
+      { label: 'microsoft', description: '2件の投稿' },
+      { label: 'facebook',  description: '3件の投稿' },
+      { label: 'google',    description: '4件の投稿' },
+      { label: 'intel',     description: '5件の投稿' },
+      { label: 'sony',      description: '6件の投稿' },
+    ]);
+    const result = validateTagQuickPick(quickPick);
+
+    expect(result).to.be.false;
   });
 });

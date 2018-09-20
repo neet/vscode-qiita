@@ -1,5 +1,5 @@
 import { SearchTagResult } from 'qiita-js-2';
-import { QuickPickItem, window } from 'vscode';
+import { QuickPick, QuickPickItem, window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 
@@ -19,6 +19,16 @@ export const makeQuickPickItemFromTag = (id: string, followersCount: number) => 
     followersCount,
   ),
 });
+
+/**
+ * タグのバリデーション
+ * タグは1件以上5件以内のみ可能
+ * @param selectedItems 選択済みアイテム
+ * @return 真理値の結果
+ */
+export const validateTagQuickPick = (quickPick: QuickPick<QuickPickItem>) => {
+  return quickPick.selectedItems.length >= 1 && quickPick.selectedItems.length <= 5;
+};
 
 /**
  * ユーザーからの入力が検索結果に無いときにその入力を結果の先頭に挿入
@@ -73,8 +83,7 @@ export function tagQuickPickCreator (selectedItems?: QuickPickItem[]) {
     quickPick.busy       = true;
     const suggestedItems = await suggestTags(value);
     quickPick.busy       = false;
-
-    quickPick.items         = quickPick.selectedItems.concat(suggestedItems);
+    quickPick.items      = quickPick.selectedItems.concat(suggestedItems);
     quickPick.selectedItems = quickPick.selectedItems;
   });
 
