@@ -83,6 +83,11 @@
         "command": "qiita.editTitle",
         "title": "%commands.editTitle.title%",
         "category": "Qiita"
+      },
+      {
+        "command": "qiita.expandItems",
+        "title": "%commands.expanditems.title%",
+        "category": "Qiita"
       }
     ],
     "configuration": [
@@ -115,7 +120,8 @@
         { "command": "qiita.editTags", "when": "false" },
         { "command": "qiita.openItemExternal", "when": "false"},
         { "command": "qiita.makePublic", "when": "false"},
-        { "command": "qiita.editTitle", "when": "false" }
+        { "command": "qiita.editTitle", "when": "false" },
+        { "command": "qiita.expandItems", "when": "false" }
       ],
       "editor/title": [
         {

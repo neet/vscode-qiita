@@ -2,7 +2,7 @@ import { Item } from 'qiita-js-2';
 import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
-import { qiitaItemsProvider } from '../explorer/qiitaItems';
+import { qiitaItemsProvider } from '../explorers/qiitaItems';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();
