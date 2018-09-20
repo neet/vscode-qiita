@@ -32,6 +32,15 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 
 ![ユーザー設定](https://i.imgur.com/YKhdRZ5.png)
 
+## 投稿を公開
+開いているテキストエディター上で右クリック > Qiitaで公開 から編集中のファイルをQiitaに公開することができます。公開範囲、タイトル、タグも表示されるダイアログから設定できます。
+
+![Qiitaで公開(コンテキスト)](https://i.imgur.com/Lblsr7U.png)
+
+また、`Ctrl+Shift+P`/`⌘+Shift+P`から表示できるコマンドパレットからも公開することができます。この場合は、現在アクティブなファイルが公開されます。
+
+![Qiitaで公開(コマンドパレット)](https://i.imgur.com/Zn4mBQq.png)
+
 ## 拡張機能の設定
 ユーザー設定は `Ctrl+,` / `⌘+,` からGUIで変更できますが、必要に応じて `settings.json` 内の以下のキーを直接編集して設定を変更できます
 
