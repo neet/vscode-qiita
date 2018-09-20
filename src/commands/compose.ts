@@ -15,7 +15,7 @@ const localize = nls.loadMessageBundle();
  * アクティブなテキストエディタから投稿を公開するコマンドパレット向け関数
  * @param resource コマンドがexplorerから発火した際に渡される引数
  */
-export async function compose (resource?: { path: string }) {
+export async function compose (resource?: Uri) {
   const options: CreateItemOptions = {
     body:  '',
     title: '',
@@ -25,12 +25,12 @@ export async function compose (resource?: { path: string }) {
     gist: workspace.getConfiguration('qiita').get('gistOnCreateItem'),
   };
 
-  // explorerから発火した場合
-  if (resource && resource.path) {
+  // 保存済みファイルの場合
+  if (resource && resource.scheme !== 'untitled') {
     options.title = getFilenameFromPath(resource.path);
     options.body  = await workspace.openTextDocument(resource.path).then((document) => document.getText());
 
-  // テキストエディタから発火した場合
+  // コマンドパレットかファイルが未保存の場合
   } else if (window.activeTextEditor) {
     options.title = getFilenameFromPath(window.activeTextEditor.document.fileName);
     options.body  = window.activeTextEditor.document.getText();
