@@ -2,7 +2,6 @@ import { CreateItemOptions } from 'qiita-js-2';
 import { commands, Uri, window, workspace } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
-import { configuration } from '../configuration';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
 import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPick';
 import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBox';
@@ -22,8 +21,8 @@ export async function compose (resource?: { path: string }) {
     title: '',
     tags: [],
     private: false,
-    tweet: configuration.tweetOnCreateItem,
-    gist: configuration.gistOnCreateItem,
+    tweet: workspace.getConfiguration('qiita').get('tweetOnCreateItem'),
+    gist: workspace.getConfiguration('qiita').get('gistOnCreateItem'),
   };
 
   // explorerから発火した場合

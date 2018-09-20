@@ -6,6 +6,8 @@
   "general.failure.InternalServerError": "削除に失敗しました。Qiitaのサーバーがダウンしている可能性があります。",
   "general.failure.fallback": "ご迷惑をお掛けしてしまい申し訳ございませんが、エラーが発生しました。 バグの可能性がある場合は開発者にご報告いただけると幸いです。\nhttps://github.com/neet/vscode-qiita/issues",
 
+  "general.information.unauthorized": "まだQiitaアカウントを連携していないようです。設定画面からトークンを入力することで利用可能になります。",
+
   "commands.compose.title": "Qiitaで公開",
   "commands.compose.success": "投稿を公開しました",
   "commands.compose.openInBrowser": "ブラウザで確認",
