@@ -20,7 +20,7 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 
 ![新しいアクセストークンを発行](https://i.imgur.com/LPtgosR.png)
 
-アクセストークンを発行します。説明と、必要に応じてスコープを付与し発行してください。
+アクセストークンを発行します。説明と応じてスコープを付与し発行してください。閲覧のみの場合は `read_qiita` を、編集も行う場合は `read_qiita`と`write_qiita`を選択します。
 
 ![アクセストークンの発行](https://i.imgur.com/jHBsMSp.png)
 
