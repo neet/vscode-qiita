@@ -63,7 +63,8 @@ class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
   /**
    * ツリーデータを更新
    */
-  public refresh () {
+  public async refresh () {
+    await itemsStore.refreshItems();
     this._onDidChangeTreeData.fire();
   }
 
