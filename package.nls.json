@@ -11,6 +11,7 @@
   "commands.compose.openInBrowser": "ブラウザで確認",
 
   "commands.openItem.title": "開く",
+  "commands.openItem.updateSuccess": "投稿を更新しました",
   "commands.openItem.failure.fallback": "ファイルの表示に失敗しました。指定された投稿は存在しない可能性があります。",
 
   "commands.deleteItem.title": "削除",

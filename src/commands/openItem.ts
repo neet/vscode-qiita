@@ -28,7 +28,10 @@ export const updater = async (item: Item, document: TextDocument) => {
 
     fs.writeFileSync(document.uri.path, document.getText());
 
-    window.showInformationMessage('updated');
+    window.showInformationMessage(localize(
+      'commands.openItem.updateSuccess',
+      '投稿を更新しました',
+    ));
   } catch (error) {
     handleErrorMessage(error);
   }
