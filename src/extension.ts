@@ -7,13 +7,13 @@ import { editTitle } from './commands/editTitle';
 import { makePublic } from './commands/makePublic';
 import { openItem } from './commands/openItem';
 import { openItemExternal } from './commands/openItemExternal';
-import { QiitaItemProvider } from './explorer/qiitaItems';
+import { qiitaItemsProvider } from './explorer/qiitaItems';
 import './polyfills';
 
 nls.config(process.env.VSCODE_NLS_CONFIG as nls.Options)();
 
 export function activate (context: ExtensionContext) {
-  window.registerTreeDataProvider('qiitaItems', new QiitaItemProvider());
+  window.registerTreeDataProvider('qiitaItems', qiitaItemsProvider);
 
   context.subscriptions.push(
     commands.registerCommand('qiita.openItem', openItem(context.storagePath)),

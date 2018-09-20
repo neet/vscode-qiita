@@ -2,6 +2,7 @@ import { Item } from 'qiita-js-2';
 import { QuickPickItem, window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
+import { qiitaItemsProvider } from '../explorer/qiitaItems';
 import { makeQuickPickItemFromTag, tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPickCreator';
 import { handleErrorMessage } from '../utils/errorHandler';
 
@@ -46,8 +47,8 @@ export async function editTags (resource: { item: Item }) {
 
     try {
       quickPick.hide();
-
       await updater(item, quickPick.selectedItems);
+      qiitaItemsProvider.refresh();
 
       return window.showInformationMessage(localize(
         'commands.editTags.success',

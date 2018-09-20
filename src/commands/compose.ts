@@ -3,6 +3,7 @@ import { commands, Uri, window, workspace } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { configuration } from '../configuration';
+import { qiitaItemsProvider } from '../explorer/qiitaItems';
 import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPickCreator';
 import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBoxCreator';
 import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPickCreator';
@@ -84,6 +85,7 @@ export async function compose (resource?: { path: string }) {
 
     try {
       const item = await client.createItem(options);
+      qiitaItemsProvider.refresh();
 
       const openInBrowser = localize(
         'commands.compose.openInBrowser',

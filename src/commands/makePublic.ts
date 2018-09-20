@@ -2,6 +2,7 @@ import { Item } from 'qiita-js-2';
 import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
+import { qiitaItemsProvider } from '../explorer/qiitaItems';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();
@@ -46,6 +47,7 @@ export async function makePublic (resource: { item: Item }) {
       tags: resource.item.tags,
       private: false,
     });
+    qiitaItemsProvider.refresh();
 
     return window.showInformationMessage(localize(
       'commands.makePublic.success',

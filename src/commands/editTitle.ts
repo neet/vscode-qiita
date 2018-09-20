@@ -2,6 +2,7 @@ import { Item } from 'qiita-js-2';
 import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
+import { qiitaItemsProvider } from '../explorer/qiitaItems';
 import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBoxCreator';
 import { handleErrorMessage } from '../utils/errorHandler';
 
@@ -25,12 +26,12 @@ export function editTitle (resource: { item: Item }) {
 
     try {
       inputBox.hide();
-
       await client.updateItem(item.id, {
         body: item.body,
         tags: item.tags,
         title: inputBox.value,
       });
+      qiitaItemsProvider.refresh();
 
       return window.showInformationMessage(localize(
         'commands.editTitle.success',
