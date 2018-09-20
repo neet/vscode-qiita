@@ -12,31 +12,37 @@ import { getFilenameFromPath } from '../utils/getFilenameFromPath';
 
 const localize = nls.loadMessageBundle();
 
+
+
 /**
- * 投稿を公開するためのQuickPickとInputBoxを表示
- * @param arg コマンドから渡される引数
+ * アクティブなテキストエディタから投稿を公開するコマンドパレット向け関数
+ * @param resource コマンドがexplorerから発火した際に渡される引数
  */
-export function composeFromExplorer (arg: object & { path: string }): void {
-  const fileName = getFilenameFromPath(arg.path);
-
-  const titleInputBox       = titleInputBoxCreator(fileName);
-  const tagsQuickPick       = tagQuickPickCreator();
-  const visibilityQuickPick = visibilityQuickPickCreator();
-
-  // Qiita.createItemのオプション
+export async function compose (resource?: { path: string }) {
   const options: CreateItemOptions = {
+    body:  '',
     title: '',
     tags: [],
-    body: '',
     private: false,
     tweet: configuration.tweetOnCreateItem,
     gist: configuration.gistOnCreateItem,
   };
 
-  // ドキュメントから本文を取得してbodyに代入
-  workspace.openTextDocument(arg.path).then((document) => {
-    options.body = document.getText();
-  });
+  // explorerから発火した場合
+  if (resource && resource.path) {
+    options.title = getFilenameFromPath(resource.path);
+    options.body  = await workspace.openTextDocument(resource.path).then((document) => document.getText());
+  }
+
+  // テキストエディタから発火した場合
+  if (window.activeTextEditor) {
+    options.title = getFilenameFromPath(window.activeTextEditor.document.fileName);
+    options.body  = window.activeTextEditor.document.getText();
+  }
+
+  const titleInputBox       = titleInputBoxCreator(options.title);
+  const tagsQuickPick       = tagQuickPickCreator();
+  const visibilityQuickPick = visibilityQuickPickCreator();
 
   // titleInputBoxからタイトルを代入
   titleInputBox.onDidAccept(() => {
@@ -57,6 +63,7 @@ export function composeFromExplorer (arg: object & { path: string }): void {
 
     try {
       visibilityQuickPick.hide();
+
       const item = await client.createItem(options);
 
       const openInBrowser = localize(
