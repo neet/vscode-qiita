@@ -35,7 +35,7 @@ export async function deleteItem (resource: { item: Item }) {
 
   try {
     await client.deleteItem(resource.item.id);
-    qiitaItemsProvider.refresh();
+    await qiitaItemsProvider.refreshItems();
 
     return window.showInformationMessage(localize(
       'commands.deleteItem.success',

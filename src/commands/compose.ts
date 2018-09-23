@@ -84,7 +84,7 @@ export async function compose (resource?: Uri) {
 
     try {
       const item = await client.createItem(options);
-      qiitaItemsProvider.refresh();
+      await qiitaItemsProvider.refreshItems();
 
       const openInBrowser = localize(
         'commands.compose.openInBrowser',

@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { commands, ConfigurationChangeEvent, ExtensionContext, window, workspace } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from './client';
@@ -19,7 +20,7 @@ export function activate (context: ExtensionContext) {
 
   context.subscriptions.push(
     workspace.onDidChangeConfiguration(refreshUserState),
-    commands.registerCommand('qiita.openItem', openItem(context.storagePath)),
+    commands.registerCommand('qiita.openItem', openItem(path.join(context.extensionPath, 'storage'))),
     commands.registerCommand('qiita.editTags', editTags),
     commands.registerCommand('qiita.makePublic', makePublic),
     commands.registerCommand('qiita.compose', compose),
@@ -48,6 +49,6 @@ export function deactivate () {
 export const refreshUserState = async (e: ConfigurationChangeEvent) => {
   if (e.affectsConfiguration('qiita.token')) {
     client.setToken(workspace.getConfiguration('qiita').get('token') || '');
-    await qiitaItemsProvider.refresh();
+    await qiitaItemsProvider.refreshItems();
   }
 };

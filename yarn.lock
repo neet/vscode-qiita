@@ -1618,9 +1618,9 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-qiita-js-2@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.3.0.tgz#b975b4599db894b697ad0432082ce54086a57688"
+qiita-js-2@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/qiita-js-2/-/qiita-js-2-1.3.1.tgz#9d407cde3b5dd48c6f5ee1e9ccd1d841e6c45412"
   dependencies:
     axios "^0.18.0"
     http-link-header "^0.8.0"

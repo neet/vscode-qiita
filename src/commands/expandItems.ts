@@ -1,9 +1,12 @@
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
-import { itemsStore } from '../stores/itemsStore';
+import { handleErrorMessage } from '../utils/errorHandler';
 
 export async function expandItems () {
-  if (!itemsStore.done) {
-    await itemsStore.expandItems();
-    qiitaItemsProvider.refresh();
+  try {
+    if (!qiitaItemsProvider.done) {
+      await qiitaItemsProvider.expandItems();
+    }
+  } catch (error) {
+    handleErrorMessage(error);
   }
 }

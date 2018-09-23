@@ -1,71 +1,56 @@
 import { Item } from 'qiita-js-2';
-import {
-  Command,
-  Event,
-  EventEmitter,
-  TreeDataProvider,
-  TreeItem,
-  TreeItemCollapsibleState,
-  Uri,
-} from 'vscode';
+import { Event, EventEmitter, TreeDataProvider, TreeItem, TreeItemCollapsibleState } from 'vscode';
 import * as nls from 'vscode-nls';
-import { itemsStore } from '../stores/itemsStore';
+import { client } from '../client';
+import '../polyfills';
+import { ExpandItems } from './nodes/expandItemsNode';
+import { QiitaItem } from './nodes/qiitaItemsNode';
 
 const localize = nls.loadMessageBundle();
 
+type NodeTypes = ExpandItems|QiitaItem;
 
-export class QiitaItem extends TreeItem {
-  /**
-   * "Qiitaの投稿" ビューに表示されるアイテム
-   * @param item Qiitaの投稿
-   * @param collapsibleState アイテムが折り畳まれているかの状態
-   * @param command クリック時に発火するコマンド
-   */
-  constructor (
-    public readonly item: Item,
-    public readonly collapsibleState: TreeItemCollapsibleState,
-    public readonly command: Command,
-  ) {
-    super(item.title, collapsibleState);
-  }
+class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
+  /** TreeDataProviderの変更を制御するためのEventEmitter */
+  private _onDidChangeTreeData: EventEmitter<NodeTypes|undefined> = new EventEmitter<NodeTypes|undefined>();
 
-  public resourceUri  = Uri.parse('file:///text.md'); // Hack: アイコンをMarkdownのものに
-  public contextValue = 'qiitaItems';
-}
+  /** 外部から参照するためのプロパティ */
+  public readonly onDidChangeTreeData: Event<NodeTypes|undefined> = this._onDidChangeTreeData.event;
 
+  /** 取得した投稿 */
+  public items: Item[] = [];
 
-export class ExpandItems extends TreeItem {
-  /**
-   * 「さらに読み込む」ボタンのためのアイテム
-   * @param collapsibleState アイテムが折り畳まれているかの状態
-   */
-  constructor (public readonly collapsibleState: TreeItemCollapsibleState) {
-    super(localize(
-      'commands.expandItems.title',
-      'さらに読み込む...',
-    ), collapsibleState);
-  }
+  /** 全件取得したかどうか */
+  public done = false;
 
-  public command = {
-    command: 'qiita.expandItems',
-    title:   localize('commands.expandItems.title', 'さらに読み込む...'),
-    arguments: [],
-  };
-
-  public contextValue = 'qiitaItems';
-}
-
-
-class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
-  private _onDidChangeTreeData: EventEmitter<QiitaItem|ExpandItems|undefined> = new EventEmitter<QiitaItem|ExpandItems|undefined>();
-  public readonly onDidChangeTreeData: Event<QiitaItem|ExpandItems|undefined> = this._onDidChangeTreeData.event;
+  /** 自分の投稿の配列を返すイテラブル */
+  protected itemsIterable = client.fetchMyItems({ page: 1, per_page: 60 });
 
   /**
    * ツリーデータを更新
    */
-  public async refresh () {
-    await itemsStore.refreshItems();
+  protected async refresh () {
     this._onDidChangeTreeData.fire();
+  }
+
+  /**
+   * イテラブルを初期化して最初のページを再取得
+   */
+  public async refreshItems () {
+    const { value: items, done } = await this.itemsIterable.next('reset');
+    this.items = items;
+    this.done  = done;
+    this.refresh();
+  }
+
+  /**
+   * イテラブルのnextを呼び出し
+   */
+  public async expandItems () {
+    const { value: items, done } = await this.itemsIterable.next();
+    this.items.concat(items);
+    this.done = done;
+    this.refresh();
   }
 
   /**
@@ -82,24 +67,22 @@ class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
    * @param element 取得するelement
    */
   public async getChildren (): Promise<(QiitaItem|ExpandItems)[]> {
-    if (itemsStore.items.size === 0) {
-      await itemsStore.refreshItems();
+    if (!this.items.length) {
+      await this.refreshItems();
     }
 
-    const children = [];
-
-    for (const item of itemsStore.items) {
+    const children: NodeTypes[] = this.items.map((item) => {
       const command = {
         command:   'qiita.openItem',
         title:     localize('commands.openItem.title', '開く'),
         arguments: [ item ],
       };
 
-      children.push(new QiitaItem(item, TreeItemCollapsibleState.None, command));
-    }
+      return new QiitaItem(item, TreeItemCollapsibleState.None, command);
+    });
 
     // アイテムが最後まで読み込まれていない場合、「さらに読み込む...」を挿入する
-    if (!itemsStore.done) {
+    if (!this.done) {
       children.push(new ExpandItems(TreeItemCollapsibleState.None));
     }
 

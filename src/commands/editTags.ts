@@ -48,7 +48,7 @@ export async function editTags (resource: { item: Item }) {
     try {
       quickPick.hide();
       await updater(item, quickPick.selectedItems);
-      qiitaItemsProvider.refresh();
+      await qiitaItemsProvider.refreshItems();
 
       return window.showInformationMessage(localize(
         'commands.editTags.success',

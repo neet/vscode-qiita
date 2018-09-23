@@ -47,7 +47,8 @@ export async function makePublic (resource: { item: Item }) {
       tags: resource.item.tags,
       private: false,
     });
-    qiitaItemsProvider.refresh();
+
+    await qiitaItemsProvider.refreshItems();
 
     return window.showInformationMessage(localize(
       'commands.makePublic.success',
