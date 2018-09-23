@@ -4,7 +4,6 @@ import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
 import { makeQuickPickItemFromTag, tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPick';
-import { itemsStore } from '../stores/itemsStore';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();
@@ -49,8 +48,7 @@ export async function editTags (resource: { item: Item }) {
     try {
       quickPick.hide();
       await updater(item, quickPick.selectedItems);
-      await itemsStore.refreshItems();
-      qiitaItemsProvider.refresh();
+      await qiitaItemsProvider.refreshItems();
 
       return window.showInformationMessage(localize(
         'commands.editTags.success',

@@ -48,6 +48,6 @@ export function deactivate () {
 export const refreshUserState = async (e: ConfigurationChangeEvent) => {
   if (e.affectsConfiguration('qiita.token')) {
     client.setToken(workspace.getConfiguration('qiita').get('token') || '');
-    await qiitaItemsProvider.refresh();
+    await qiitaItemsProvider.refreshItems();
   }
 };

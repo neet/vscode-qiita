@@ -3,7 +3,6 @@ import { window } from 'vscode';
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import { qiitaItemsProvider } from '../explorers/qiitaItems';
-import { itemsStore } from '../stores/itemsStore';
 import { handleErrorMessage } from '../utils/errorHandler';
 
 const localize = nls.loadMessageBundle();
@@ -36,8 +35,7 @@ export async function deleteItem (resource: { item: Item }) {
 
   try {
     await client.deleteItem(resource.item.id);
-    await itemsStore.refreshItems();
-    qiitaItemsProvider.refresh();
+    await qiitaItemsProvider.refreshItems();
 
     return window.showInformationMessage(localize(
       'commands.deleteItem.success',

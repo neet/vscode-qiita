@@ -8,15 +8,20 @@ import { QiitaItem } from './models/qiitaItemsNode';
 
 const localize = nls.loadMessageBundle();
 
-class QiitaItemsProvider implements TreeDataProvider<TreeItem> {
-  private _onDidChangeTreeData: EventEmitter<TreeItem|undefined> = new EventEmitter<TreeItem|undefined>();
-  public readonly onDidChangeTreeData: Event<TreeItem|undefined> = this._onDidChangeTreeData.event;
+type NodeTypes = ExpandItems|QiitaItem;
+
+class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
+  /** TreeDataProviderの変更を制御するためのEventEmitter */
+  private _onDidChangeTreeData: EventEmitter<NodeTypes|undefined> = new EventEmitter<NodeTypes|undefined>();
+
+  /** 外部から参照するためのプロパティ */
+  public readonly onDidChangeTreeData: Event<NodeTypes|undefined> = this._onDidChangeTreeData.event;
 
   /** 取得した投稿 */
-  protected items: Item[] = [];
+  public items: Item[] = [];
 
   /** 全件取得したかどうか */
-  protected done = false;
+  public done = false;
 
   /** 自分の投稿の配列を返すイテラブル */
   protected itemsIterable = client.fetchMyItems({ page: 1, per_page: 60 });
@@ -24,8 +29,28 @@ class QiitaItemsProvider implements TreeDataProvider<TreeItem> {
   /**
    * ツリーデータを更新
    */
-  public async refresh () {
+  protected async refresh () {
     this._onDidChangeTreeData.fire();
+  }
+
+  /**
+   * イテラブルを初期化して最初のページを再取得
+   */
+  public async refreshItems () {
+    const { value: items, done } = await this.itemsIterable.next('reset');
+    this.items = items;
+    this.done  = done;
+    this.refresh();
+  }
+
+  /**
+   * イテラブルのnextを呼び出し
+   */
+  public async expandItems () {
+    const { value: items, done } = await this.itemsIterable.next();
+    this.items.concat(items);
+    this.done = done;
+    this.refresh();
   }
 
   /**
@@ -42,13 +67,13 @@ class QiitaItemsProvider implements TreeDataProvider<TreeItem> {
    * @param element 取得するelement
    */
   public async getChildren (): Promise<(QiitaItem|ExpandItems)[]> {
-    if (!itemsStore.items || !itemsStore.items.length) {
-      await itemsStore.refreshItems();
+    if (!this.items.length) {
+      await this.refreshItems();
     }
 
     const children = [];
 
-    for (const item of itemsStore.items) {
+    for (const item of this.items) {
       const command = {
         command:   'qiita.openItem',
         title:     localize('commands.openItem.title', '開く'),
@@ -59,29 +84,11 @@ class QiitaItemsProvider implements TreeDataProvider<TreeItem> {
     }
 
     // アイテムが最後まで読み込まれていない場合、「さらに読み込む...」を挿入する
-    if (!itemsStore.done) {
+    if (!this.done) {
       children.push(new ExpandItems(TreeItemCollapsibleState.None));
     }
 
     return children;
-  }
-
-  /**
-   * イテラブルを初期化して最初のページを再取得
-   */
-  public async refreshItems () {
-    const { value: items, done } = await this.itemsIterable.next('reset');
-    this.items = items;
-    this.done  = done;
-  }
-
-  /**
-   * イテラブルのnextを呼び出し
-   */
-  public async expandItems () {
-    const { value: items, done } = await this.itemsIterable.next();
-    this.items.concat(items);
-    this.done = done;
   }
 }
 

@@ -31,7 +31,7 @@ export function editTitle (resource: { item: Item }) {
         tags: item.tags,
         title: inputBox.value,
       });
-      qiitaItemsProvider.refresh();
+      qiitaItemsProvider.refreshItems();
 
       return window.showInformationMessage(localize(
         'commands.editTitle.success',
