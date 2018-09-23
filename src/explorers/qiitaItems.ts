@@ -71,17 +71,15 @@ class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
       await this.refreshItems();
     }
 
-    const children = [];
-
-    for (const item of this.items) {
+    const children: NodeTypes[] = this.items.map((item) => {
       const command = {
         command:   'qiita.openItem',
         title:     localize('commands.openItem.title', '開く'),
         arguments: [ item ],
       };
 
-      children.push(new QiitaItem(item, TreeItemCollapsibleState.None, command));
-    }
+      return new QiitaItem(item, TreeItemCollapsibleState.None, command);
+    });
 
     // アイテムが最後まで読み込まれていない場合、「さらに読み込む...」を挿入する
     if (!this.done) {
