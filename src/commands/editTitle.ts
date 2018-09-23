@@ -26,12 +26,14 @@ export function editTitle (resource: { item: Item }) {
 
     try {
       inputBox.hide();
+
       await client.updateItem(item.id, {
         body: item.body,
         tags: item.tags,
         title: inputBox.value,
       });
-      qiitaItemsProvider.refreshItems();
+
+      await qiitaItemsProvider.refreshItems();
 
       return window.showInformationMessage(localize(
         'commands.editTitle.success',
