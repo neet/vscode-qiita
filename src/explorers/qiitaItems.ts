@@ -1,70 +1,30 @@
 import { Item } from 'qiita-js-2';
-import {
-  Command,
-  Event,
-  EventEmitter,
-  TreeDataProvider,
-  TreeItem,
-  TreeItemCollapsibleState,
-  Uri,
-} from 'vscode';
+import { Event, EventEmitter, TreeDataProvider, TreeItem, TreeItemCollapsibleState } from 'vscode';
 import * as nls from 'vscode-nls';
-import { itemsStore } from '../stores/itemsStore';
+import { client } from '../client';
+import '../polyfills';
+import { ExpandItems } from './models/expandItemsNode';
+import { QiitaItem } from './models/qiitaItemsNode';
 
 const localize = nls.loadMessageBundle();
 
+class QiitaItemsProvider implements TreeDataProvider<TreeItem> {
+  private _onDidChangeTreeData: EventEmitter<TreeItem|undefined> = new EventEmitter<TreeItem|undefined>();
+  public readonly onDidChangeTreeData: Event<TreeItem|undefined> = this._onDidChangeTreeData.event;
 
-export class QiitaItem extends TreeItem {
-  /**
-   * "Qiitaの投稿" ビューに表示されるアイテム
-   * @param item Qiitaの投稿
-   * @param collapsibleState アイテムが折り畳まれているかの状態
-   * @param command クリック時に発火するコマンド
-   */
-  constructor (
-    public readonly item: Item,
-    public readonly collapsibleState: TreeItemCollapsibleState,
-    public readonly command: Command,
-  ) {
-    super(item.title, collapsibleState);
-  }
+  /** 取得した投稿 */
+  protected items: Item[] = [];
 
-  public resourceUri  = Uri.parse('file:///text.md'); // Hack: アイコンをMarkdownのものに
-  public contextValue = 'qiitaItems';
-}
+  /** 全件取得したかどうか */
+  protected done = false;
 
-
-export class ExpandItems extends TreeItem {
-  /**
-   * 「さらに読み込む」ボタンのためのアイテム
-   * @param collapsibleState アイテムが折り畳まれているかの状態
-   */
-  constructor (public readonly collapsibleState: TreeItemCollapsibleState) {
-    super(localize(
-      'commands.expandItems.title',
-      'さらに読み込む...',
-    ), collapsibleState);
-  }
-
-  public command = {
-    command: 'qiita.expandItems',
-    title:   localize('commands.expandItems.title', 'さらに読み込む...'),
-    arguments: [],
-  };
-
-  public contextValue = 'qiitaItems';
-}
-
-
-class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
-  private _onDidChangeTreeData: EventEmitter<QiitaItem|ExpandItems|undefined> = new EventEmitter<QiitaItem|ExpandItems|undefined>();
-  public readonly onDidChangeTreeData: Event<QiitaItem|ExpandItems|undefined> = this._onDidChangeTreeData.event;
+  /** 自分の投稿の配列を返すイテラブル */
+  protected itemsIterable = client.fetchMyItems({ page: 1, per_page: 60 });
 
   /**
    * ツリーデータを更新
    */
   public async refresh () {
-    await itemsStore.refreshItems();
     this._onDidChangeTreeData.fire();
   }
 
@@ -82,7 +42,7 @@ class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
    * @param element 取得するelement
    */
   public async getChildren (): Promise<(QiitaItem|ExpandItems)[]> {
-    if (itemsStore.items.size === 0) {
+    if (!itemsStore.items || !itemsStore.items.length) {
       await itemsStore.refreshItems();
     }
 
@@ -104,6 +64,24 @@ class QiitaItemsProvider implements TreeDataProvider<QiitaItem|ExpandItems> {
     }
 
     return children;
+  }
+
+  /**
+   * イテラブルを初期化して最初のページを再取得
+   */
+  public async refreshItems () {
+    const { value: items, done } = await this.itemsIterable.next('reset');
+    this.items = items;
+    this.done  = done;
+  }
+
+  /**
+   * イテラブルのnextを呼び出し
+   */
+  public async expandItems () {
+    const { value: items, done } = await this.itemsIterable.next();
+    this.items.concat(items);
+    this.done = done;
   }
 }
 

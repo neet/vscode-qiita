@@ -6,6 +6,7 @@ import { qiitaItemsProvider } from '../explorers/qiitaItems';
 import { tagQuickPickCreator, validateTagQuickPick } from '../quickpicks/tagQuickPick';
 import { titleInputBoxCreator, validateTitleInputBox } from '../quickpicks/titleInputBox';
 import { privateLabel, visibilityQuickPickCreator } from '../quickpicks/visibilityQuickPick';
+import { itemsStore } from '../stores/itemsStore';
 import { handleErrorMessage } from '../utils/errorHandler';
 import { getFilenameFromPath } from '../utils/getFilenameFromPath';
 
@@ -84,6 +85,7 @@ export async function compose (resource?: Uri) {
 
     try {
       const item = await client.createItem(options);
+      await itemsStore.refreshItems();
       qiitaItemsProvider.refresh();
 
       const openInBrowser = localize(
