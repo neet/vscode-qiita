@@ -3,8 +3,8 @@ import { Event, EventEmitter, TreeDataProvider, TreeItem, TreeItemCollapsibleSta
 import * as nls from 'vscode-nls';
 import { client } from '../client';
 import '../polyfills';
-import { ExpandItems } from './models/expandItemsNode';
-import { QiitaItem } from './models/qiitaItemsNode';
+import { ExpandItems } from './nodes/expandItemsNode';
+import { QiitaItem } from './nodes/qiitaItemsNode';
 
 const localize = nls.loadMessageBundle();
 
