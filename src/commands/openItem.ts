@@ -60,8 +60,9 @@ export function openItem (storagePath?: string) {
         fs.writeFileSync(fileUri.fsPath, item.body);
       }
 
-      const document = await workspace.openTextDocument(fileUri);
-      await window.showTextDocument(document);
+      await workspace.openTextDocument(fileUri).then((document) => {
+        return window.showTextDocument(document, undefined, true);
+      });
 
       // 保存時にアップデートするためのイベントリスナを追加
       workspace.onDidSaveTextDocument(async (updatedDocument) => {
