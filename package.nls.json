@@ -37,7 +37,7 @@
   "commands.editTitle.title": "タイトルを編集",
   "commands.editTitle.success": "タイトルを編集しました",
 
-  "commands.expanditems.title": "さらに読み込む...",
+  "commands.expandItems.title": "さらに読み込む...",
 
   "quickpicks.tagQuickPick.title": "投稿に登録するタグを入力してください",
   "quickpicks.tagQuickPick.placeholder": "例) Rails React Mastodon",

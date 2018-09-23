@@ -83,7 +83,7 @@
       },
       {
         "command": "qiita.expandItems",
-        "title": "%commands.expanditems.title%",
+        "title": "%commands.expandItems.title%",
         "category": "Qiita"
       }
     ],
