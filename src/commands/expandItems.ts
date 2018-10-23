@@ -7,6 +7,9 @@ export async function expandItems () {
       await qiitaItemsProvider.expandItems();
     }
   } catch (error) {
+    // tslint:disable-next-line:no-console
+    console.warn(error);
+
     handleErrorMessage(error);
   }
 }

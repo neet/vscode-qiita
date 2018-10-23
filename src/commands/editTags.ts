@@ -55,6 +55,9 @@ export async function editTags (resource: { item: Item }) {
         'タグを編集しました',
       ));
     } catch (error) {
+      // tslint:disable-next-line:no-console
+      console.warn(error);
+
       return handleErrorMessage(error);
     }
   });

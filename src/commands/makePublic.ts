@@ -55,6 +55,9 @@ export async function makePublic (resource: { item: Item }) {
       '公開範囲を公開に変更しました',
     ));
   } catch (error) {
+    // tslint:disable-next-line:no-console
+    console.warn(error);
+
     return handleErrorMessage(error);
   }
 }
