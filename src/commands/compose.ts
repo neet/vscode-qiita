@@ -103,6 +103,9 @@ export async function compose (resource?: Uri) {
         commands.executeCommand('vscode.open', Uri.parse(item.url));
       }
     } catch (error) {
+      // tslint:disable-next-line:no-console
+      console.warn(error);
+
       handleErrorMessage(error);
     }
   });

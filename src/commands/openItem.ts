@@ -33,6 +33,9 @@ export const updater = async (item: Item, document: TextDocument) => {
       '投稿を更新しました',
     ));
   } catch (error) {
+    // tslint:disable-next-line:no-console
+    console.warn(error);
+
     handleErrorMessage(error);
   }
 };
@@ -71,6 +74,9 @@ export function openItem (storagePath?: string) {
         }
       });
     } catch (error) {
+      // tslint:disable-next-line:no-console
+      console.warn(error);
+
       window.showErrorMessage(localize(
         'commands.openItem.failure.fallback',
         'ファイルの表示に失敗しました。指定された投稿は存在しない可能性があります。',
