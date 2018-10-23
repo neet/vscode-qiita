@@ -100,7 +100,7 @@ export async function compose (resource?: Uri) {
       );
 
       if (result === openInBrowser) {
-        commands.executeCommand('vscode.open', Uri.parse(item.url));
+        commands.executeCommand('vscode.open', item.url);
       }
     } catch (error) {
       // tslint:disable-next-line:no-console

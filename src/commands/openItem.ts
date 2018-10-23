@@ -51,7 +51,7 @@ export function openItem (storagePath?: string) {
     }
 
     try {
-      const fileUri = Uri.parse(`file://${storagePath}/${item.id}.md`);
+      const fileUri = Uri.file(`${storagePath}/${item.id}.md`);
 
       // 拡張機能用ディレクトリがない場合初期化
       if (!fs.existsSync(storagePath)) {
