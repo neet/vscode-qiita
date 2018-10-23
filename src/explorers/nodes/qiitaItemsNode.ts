@@ -16,6 +16,6 @@ export class QiitaItem extends TreeItem {
     super(item.title, collapsibleState);
   }
 
-  public resourceUri  = Uri.parse('file:///text.md'); // Hack: アイコンをMarkdownのものに
+  public resourceUri  = Uri.file('text.md'); // Hack: アイコンをMarkdownのものに
   public contextValue = 'qiitaItems';
 }
