@@ -42,6 +42,9 @@ export async function deleteItem (resource: { item: Item }) {
       '投稿を削除しました',
     ));
   } catch (error) {
+    // tslint:disable-next-line:no-console
+    console.warn(error);
+
     return handleErrorMessage(error);
   }
 }
