@@ -9,6 +9,14 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/neetshin.vscode-qiita.svg)](https://marketplace.visualstudio.com/items?itemName=Neetshin.vscode-qiita)
 
+## インストール
+Visual Studio Code上で `Ctrl+P`/`⌘+P` でコマンドパレットを開き、以下のコマンドを実行します。
+
+```
+ext install neetshin.vscode-qiita
+```
+<a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
+
 ## フィードバック
 開発にご協力いただきありがとうございます 🙏
 - バグの報告、及び新しい機能のリクエストはGitHub内の [issueページ](https://github.com/neet/vscode-qiita/issues) から行えます。
