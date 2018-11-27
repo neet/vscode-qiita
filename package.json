@@ -3,7 +3,7 @@
   "displayName": "VSCode Qiita",
   "description": "Qiita integration for Visual Studio Code ",
   "private": true,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "preview": true,
   "main": "./out/extension",
   "license": "MIT",
