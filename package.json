@@ -100,11 +100,6 @@
             "type": "boolean",
             "default": false,
             "description": "%configuration.tweetOnCreateItem.description%"
-          },
-          "qiita.gistOnCreateItem": {
-            "type": "boolean",
-            "default": false,
-            "description": "%configuration.gistOnCreateItem.description%"
           }
         }
       }

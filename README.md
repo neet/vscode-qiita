@@ -66,8 +66,6 @@ Qiitaの[アプリケーションページ](https://qiita.com/settings/applicati
 `string`: Qiita APIのアクセストークンを設定します。
 ### `qiita.tweetOnCreateItem`
 `boolean`: 投稿を公開した際にTwitterで共有するかどうかを指定できます。(Twitter連携ログイン済みの場合のみ)
-### `qiita.gistOnCreateItem`
-`boolean`: 投稿を公開した際にGitHub Gistで共有するかどうかを指定できます。(GitHub連携ログイン済みの場合のみ)
 
 ## 開発
 ```

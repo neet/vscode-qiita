@@ -22,7 +22,6 @@ export async function compose (resource?: Uri) {
     tags: [],
     private: false,
     tweet: workspace.getConfiguration('qiita').get('tweetOnCreateItem'),
-    gist: workspace.getConfiguration('qiita').get('gistOnCreateItem'),
   };
 
   // 保存済みファイルの場合
