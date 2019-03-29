@@ -57,7 +57,6 @@
 
   "configuration.token.description": "Qiitaのアクセストークン",
   "configuration.tweetOnCreateItem.description": "投稿を公開した際にTwitterで共有するかどうか",
-  "configuration.gistOnCreateItem.description": "投稿を公開した際にGitHub Gistで共有するかどうか",
 
   "views.qiitaItem": "Qiitaの投稿"
 }
