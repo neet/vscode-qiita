@@ -1,1 +1,1 @@
-import 'core-js/modules/es7.symbol.async-iterator.js';
+import 'core-js/modules/es.symbol.async-iterator.js';
