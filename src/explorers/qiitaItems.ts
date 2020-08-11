@@ -37,9 +37,9 @@ class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
    * イテラブルを初期化して最初のページを再取得
    */
   public async refreshItems () {
-    const { value: items, done } = await this.itemsIterable.next('reset');
+    const { value: items, done } = await this.itemsIterable.next('reset' as any);
     this.items = items;
-    this.done  = done;
+    this.done  = done!;
     this.refresh();
   }
 
@@ -49,7 +49,7 @@ class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
   public async expandItems () {
     const { value: items, done } = await this.itemsIterable.next();
     this.items.push(items);
-    this.done = done;
+    this.done = done!;
     this.refresh();
   }
 
