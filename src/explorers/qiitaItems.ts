@@ -48,7 +48,7 @@ class QiitaItemsProvider implements TreeDataProvider<NodeTypes> {
    */
   public async expandItems () {
     const { value: items, done } = await this.itemsIterable.next();
-    this.items.concat(items);
+    Array.prototype.push.apply(this.items, items);
     this.done = done;
     this.refresh();
   }
