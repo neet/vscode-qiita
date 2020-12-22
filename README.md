@@ -74,22 +74,5 @@ yarn run compile
 yarn run test
 ```
 
----
-
-## メンテナー
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/neet">
-          <img width="120" height="120" src="https://github.com/neet.png?size=120">
-          </br>
-          Neetshin
-        </a>
-      </td>
-    </tr>
-  <tbody>
-</table>
-
 ## ライセンス
 MIT
